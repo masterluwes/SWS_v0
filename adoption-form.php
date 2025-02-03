@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+// ✅ Only clear form data when there are no errors
+if (!isset($_SESSION['form_errors'])) {
+    unset($_SESSION['form_data']);
+}
 ?>
 
 <?php if (isset($_SESSION['form_errors'])): ?>
@@ -31,6 +36,9 @@ session_start();
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- ✅ Add jQuery BEFORE Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -273,9 +281,16 @@ session_start();
         </div>
     </footer>
 
-    <!-- Bootstrap JS & jQuery (Required for Modal) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- ✅ Place Bootstrap JS at the bottom of the <body> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ✅ Your custom JavaScript (after both) -->
+    <script>
+        $(document).ready(function() {
+            console.log("jQuery is working!");
+        });
+    </script>
+
 
     <script>
         $(document).ready(function() {
@@ -294,31 +309,58 @@ session_start();
                     data: formData,
                     dataType: "json",
                     beforeSend: function() {
-                        $("#confirmSubmit").prop("disabled", true); // Prevent double clicks
+                        $("#confirmSubmit").prop("disabled", true);
                     },
                     success: function(response) {
-                        $("#confirmSubmit").prop("disabled", false); // Re-enable button
-
                         if (response.status === "success") {
                             $("#successModal").modal("show");
-                            $("#adoptionForm")[0].reset();
+
+                            // ✅ Reload page after success modal is closed
+                            $("#successModal").on("hidden.bs.modal", function() {
+                                location.reload();
+                            });
                         } else {
                             $("#errorMessage").html(response.message);
                             $("#errorModal").modal("show");
                         }
                     },
+
                     error: function() {
                         $("#confirmSubmit").prop("disabled", false);
-                        $("#errorMessage").html("An unexpected error occurred. Please try again.");
+                        $("#errorMessage").html("Error processing your form.");
                         $("#errorModal").modal("show");
                     }
                 });
+
+
             });
 
             // Prevent JSON errors from appearing
             $("#errorModal").on("hidden.bs.modal", function() {
                 return false;
             });
+
+            document.addEventListener("DOMContentLoaded", function() {
+                let modalElement = document.querySelector("#confirmSubmitModal");
+
+                if (!modalElement) {
+                    console.error("Modal element #confirmSubmitModal is missing!");
+                    return;
+                }
+
+                var confirmSubmitModal = new bootstrap.Modal(modalElement);
+
+                $("#confirmSubmit").click(function(event) {
+                    event.preventDefault();
+
+                    if (!validateForm()) {
+                        return;
+                    }
+
+                    confirmSubmitModal.show(); // Ensure modal is opened correctly
+                });
+            });
+
 
             // Function to validate form fields
             function validateForm() {
@@ -374,9 +416,6 @@ session_start();
             }
         });
     </script>
-
-
-
 
     <!-- Success Modal -->
     <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">

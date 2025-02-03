@@ -3,7 +3,7 @@ session_start();
 
 // Ensure this script runs only on a POST request
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: ../adoption-form.php");
+    header("Location: /SWS_v0/adoption-form.php");
     exit();
 }
 
@@ -18,7 +18,7 @@ $conn = new mysqli($servername, $username, $password, $database, $port);
 
 if ($conn->connect_error) {
     $_SESSION['form_errors'] = ["Database connection failed."];
-    header("Location: ../adoption-form.php");
+    header("Location: /SWS_v0/adoption-form.php");
     exit();
 }
 
@@ -67,19 +67,21 @@ if (!isset($_POST['prompt']) || empty($_POST['prompt'])) {
 if (!empty($errors)) {
     $_SESSION['form_errors'] = $errors;
     $_SESSION['form_data'] = $_POST; // Preserve user input
-    header("Location: ../adoption-form.php");
+    header("Location: /SWS_v0/adoption-form.php");
     exit();
 }
 
-// Prevent duplicate submissions by checking recent session
-if (isset($_SESSION['last_submission']) && $_SESSION['last_submission'] == $_POST) {
-    $_SESSION['form_errors'] = ["Duplicate submission detected. Please wait before submitting again."];
-    header("Location: ../adoption-form.php");
+$submission_hash = md5(json_encode($_POST));
+
+if (isset($_SESSION['last_submission']) && $_SESSION['last_submission'] == $submission_hash) {
+    $_SESSION['form_errors'] = ["Document successfully submitted. Please reload the page."];
+    header("Location: /SWS_v0/adoption-form.php");
     exit();
 }
 
-// Save the current submission to prevent duplicates
-$_SESSION['last_submission'] = $_POST;
+// Save hashed submission to prevent duplicates
+$_SESSION['last_submission'] = $submission_hash;
+
 
 // Sanitize form data
 $first_name = $conn->real_escape_string(trim($_POST['first_name']));
@@ -104,13 +106,12 @@ $stmt = $conn->prepare("INSERT INTO adoption_forms
 
 $stmt->bind_param("ssssssssssssii", $first_name, $last_name, $address, $phone, $email, $birthdate, $occupation, $status, $pronouns, $prompted, $animal_interest, $adopt_before, $terms_accepted, $consent_given);
 
+header('Content-Type: application/json');
+
 if ($stmt->execute()) {
-    $_SESSION['success_message'] = "Your adoption form has been submitted successfully!";
-    unset($_SESSION['form_data']); // ✅ Clear saved form data after success
+    echo json_encode(["status" => "success", "message" => "Your adoption form has been submitted successfully!"]);
 } else {
-    $_SESSION['form_errors'] = ["Error submitting form. Please try again."];
+    echo json_encode(["status" => "error", "message" => "Error submitting form. Please try again."]);
 }
 
-// ✅ Redirect user back to form page (NO JSON RESPONSE to avoid conflicts)
-header("Location: ../adoption-form.php");
-exit();
+exit(); // No redirect!
