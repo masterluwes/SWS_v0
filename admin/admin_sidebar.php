@@ -83,7 +83,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="admin_adoption_forms.php">Adoption</a>
                 <a class="collapse-item" href="admin_volunteer_forms.php">Volunteer</a>
-                <a class="collapse-item" href="#">Fundraising</a>
+                <a class="collapse-item" href="admin_contact_forms.php">Contact Forms</a>
                 <a class="collapse-item" href="#">Donation</a>
             </div>
         </div>
