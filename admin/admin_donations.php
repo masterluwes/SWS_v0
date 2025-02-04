@@ -72,7 +72,7 @@ $result = $conn->query($query);
                                 <th>Phone</th>
                                 <th>Amount</th>
                                 <th>Bank</th>
-                                <th>Proof of Payment</th>
+                                <th>Proof of Donation</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

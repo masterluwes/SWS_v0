@@ -5,16 +5,21 @@ session_start();
 $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
+    $username = trim($_POST['username']);
     $password = $_POST['password'];
     $role = $_POST['role'];
 
-    $sql = "SELECT * FROM users WHERE username='$username' AND role='$role'";
-    $result = $conn->query($sql);
+    // Prepare the SQL statement to prevent SQL injection
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND role = ?");
+    $stmt->bind_param("ss", $username, $role);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        if ($password === $row['password']) { // No need to verify hashed password
+
+        // Verify hashed password
+        if (password_verify($password, $row['password'])) {
             // Start session and save user information
             $_SESSION['username'] = $row['username'];
             $_SESSION['role'] = $row['role'];
@@ -35,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $message = "No user found with that username and role!";
     }
 
+    $stmt->close();
     $conn->close();
 }
 ?>
@@ -45,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -108,7 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a href="register.php" class="text-muted">Don't have an account? Register here</a>
         </div>
     </div>
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -36,6 +36,12 @@ $total_donations_result = $conn->query($total_donations_query);
 $total_donations_data = $total_donations_result->fetch_assoc();
 $total_donations = $total_donations_data['total_donations'] ?? 0; // Default to 0 if no donations
 
+// Fetch total number of users
+$user_count_query = "SELECT COUNT(*) AS total_users FROM users";
+$user_count_result = $conn->query($user_count_query);
+$user_count_data = $user_count_result->fetch_assoc();
+$total_users = $user_count_data['total_users'];
+
 ?>
 
 <!DOCTYPE html>
@@ -271,7 +277,7 @@ $total_donations = $total_donations_data['total_donations'] ?? 0; // Default to 
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-5">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase">Users</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_users; ?></div> 
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fa fa-user fa-2x text-gray-300" aria-hidden="true"></i>
@@ -311,7 +317,7 @@ $total_donations = $total_donations_data['total_donations'] ?? 0; // Default to 
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        <?php echo $adoption_rate; ?>% <!-- ✅ Display calculated percentage -->
+                                                        <?php echo $adoption_rate; ?>% 
                                                     </div>
                                                 </div>
                                                 <div class="col">
