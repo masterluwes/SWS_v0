@@ -88,7 +88,7 @@
                             <option value="BPI">Bank of the Philippine Islands (BPI)</option>
                             <option value="Unionbank">Unionbank</option>
                             <option value="Paypal">Paypal</option>
-                            <option value="Paymaya">Paymaya / Coins.ph / Gcash</option>
+                            <option value="Paymaya/Coins.ph/Gcash">Paymaya / Coins.ph / Gcash</option>
                         </select>
 
                         <label for="proof-of-payment">Upload Proof of Donation *</label>

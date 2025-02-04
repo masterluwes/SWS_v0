@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-paw"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin Dashboard</div>
+        <div class="sidebar-brand-text mx-3">SWS</div>
     </a>
 
     <!-- Divider -->
@@ -84,7 +84,7 @@
                 <a class="collapse-item" href="admin_adoption_forms.php">Adoption</a>
                 <a class="collapse-item" href="admin_volunteer_forms.php">Volunteer</a>
                 <a class="collapse-item" href="admin_contact_forms.php">Contact Forms</a>
-                <a class="collapse-item" href="#">Donation</a>
+                <a class="collapse-item" href="admin_donations.php">Donation</a>
             </div>
         </div>
     </li>

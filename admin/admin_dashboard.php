@@ -255,19 +255,21 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
 
                         <!-- Donations -->
                         <div class="col-xl-3 col-md-6 mb-2">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-5">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase">Donations</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">3600</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa fa-envelope-open fa-2x text-gray-300" aria-hidden="true"></i>
+                            <a href="admin_donations.php" class="text-decoration-none">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-5">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase">Donations</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">3600</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa fa-envelope-open fa-2x text-gray-300" aria-hidden="true"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <!-- Adoption Rate -->

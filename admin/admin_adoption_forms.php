@@ -83,6 +83,7 @@ $result = $conn->query($query);
                                 <th>What prompted you?</th>
                                 <th>Animal Interested</th>
                                 <th>Adopted Before?</th>
+                                <th>Adoption Status</th>
                                 <th class="actions">Actions</th>
                             </tr>
                         </thead>
@@ -105,6 +106,14 @@ $result = $conn->query($query);
 
                                     <td class="editable" data-field="animal_interest">
                                         <?= isset($row['animal_interest']) ? htmlspecialchars($row['animal_interest']) : 'N/A' ?>
+                                    </td>
+
+                                    <td>
+                                        <select class="adoption-status-dropdown" data-id="<?= $row['id']; ?>">
+                                            <option value="Pending" <?= ($row['adoption_status'] == 'Pending') ? 'selected' : ''; ?>>Pending</option>
+                                            <option value="Accepted" <?= ($row['adoption_status'] == 'Accepted') ? 'selected' : ''; ?>>Accepted</option>
+                                            <option value="Rejected" <?= ($row['adoption_status'] == 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+                                        </select>
                                     </td>
 
                                     <!-- ✅ FIXED: Correct column name -->
@@ -175,50 +184,53 @@ $result = $conn->query($query);
 
     <script>
         $(document).ready(function() {
-            // When "Edit" button is clicked
+            // Ensure all dropdowns start as disabled
+            $(".adoption-status-dropdown").prop("disabled", true);
+
+            // Enable editing when "Edit" button is clicked
             $(".edit-btn").click(function() {
                 let row = $(this).closest("tr");
-                row.find(".editable").attr("contenteditable", "true").addClass("table-warning"); // Make fields editable
-                row.find(".edit-btn").addClass("d-none"); // Hide Edit button
-                row.find(".save-btn").removeClass("d-none"); // Show Save button
+                row.find(".editable").attr("contenteditable", "true").addClass("table-warning");
+                row.find(".adoption-status-dropdown").prop("disabled", false); // ✅ Enable dropdown
+                row.find(".edit-btn").addClass("d-none");
+                row.find(".save-btn").removeClass("d-none");
             });
 
-            // When "Save" button is clicked
+            // Save button click event
             $(".save-btn").click(function() {
                 let row = $(this).closest("tr");
                 let id = row.data("id");
                 let updates = {};
 
-                // Get updated values
+                // Collect text fields
                 row.find(".editable").each(function() {
                     let field = $(this).data("field");
                     let value = $(this).text().trim();
-
-                    // Handle "name" properly by splitting into first_name and last_name
-                    if (field === "name") {
-                        let nameParts = value.split(" ");
-                        updates["first_name"] = nameParts[0] || "";
-                        updates["last_name"] = nameParts.slice(1).join(" ") || "";
-                    } else {
-                        updates[field] = value;
-                    }
-
+                    updates[field] = value;
                 });
 
-                // Send AJAX request to update database
+                // Collect updated adoption status
+                updates["adoption_status"] = row.find(".adoption-status-dropdown").val();
+
                 $.ajax({
                     type: "POST",
                     url: "update_adoption.php",
                     data: {
                         id: id,
-                        updates: JSON.stringify(updates) // Send as JSON
+                        updates: JSON.stringify(updates)
                     },
                     dataType: "json",
                     success: function(response) {
                         if (response.status === "success") {
-                            location.reload();
+                            // ✅ Disable fields after saving
+                            row.find(".editable").removeAttr("contenteditable").removeClass("table-warning");
+                            row.find(".adoption-status-dropdown").prop("disabled", true); // ✅ Disable dropdown
+                            row.find(".edit-btn").removeClass("d-none");
+                            row.find(".save-btn").addClass("d-none");
+
+                            alert("Record updated successfully!");
                         } else {
-                            alert("Error updating record: " + response.message);
+                            alert("Error: " + response.message);
                         }
                     },
                     error: function() {
@@ -226,7 +238,6 @@ $result = $conn->query($query);
                     }
                 });
             });
-
 
             // Handle Delete Action
             $(".delete-btn").click(function() {
@@ -238,14 +249,10 @@ $result = $conn->query($query);
                         id: id
                     }, function(response) {
                         row.remove();
+                        alert("Record deleted successfully!");
                     });
                 }
             });
-
-            $("#confirmSubmitModal .btn-success").click(function() {
-                $(this).prop("disabled", true); // Disable the button immediately
-            });
-
         });
     </script>
 </body>
