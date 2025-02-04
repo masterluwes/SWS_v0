@@ -82,8 +82,8 @@ $result = $conn->query($query);
                                 <th>Pronouns</th>
                                 <th>What prompted you?</th>
                                 <th>Animal Interested</th>
-                                <th>Adopted Before?</th>
                                 <th>Adoption Status</th>
+                                <th>Adopted Before?</th>
                                 <th class="actions">Actions</th>
                             </tr>
                         </thead>

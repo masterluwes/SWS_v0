@@ -6,6 +6,38 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
 }
 ?>
 
+<?php
+include 'db.php';
+
+// Get total accepted volunteers count
+$accepted_volunteer_query = "SELECT COUNT(*) AS accepted_volunteers FROM volunteers WHERE status = 'Accepted'";
+$accepted_volunteer_result = $conn->query($accepted_volunteer_query);
+$accepted_volunteer_data = $accepted_volunteer_result->fetch_assoc();
+$total_accepted_volunteers = $accepted_volunteer_data['accepted_volunteers'];
+
+// Get total number of animals
+$total_pets_query = "SELECT COUNT(*) AS total_pets FROM animals";
+$total_pets_result = $conn->query($total_pets_query);
+$total_pets_data = $total_pets_result->fetch_assoc();
+$total_pets = $total_pets_data['total_pets'];
+
+// Get number of adopted animals (adopted = 1 means adopted)
+$adopted_pets_query = "SELECT COUNT(*) AS adopted_pets FROM animals WHERE adopted = 1";
+$adopted_pets_result = $conn->query($adopted_pets_query);
+$adopted_pets_data = $adopted_pets_result->fetch_assoc();
+$adopted_pets = $adopted_pets_data['adopted_pets'];
+
+// Calculate adoption rate (Prevent division by zero)
+$adoption_rate = ($total_pets > 0) ? round(($adopted_pets / $total_pets) * 100, 2) : 0;
+
+// Get total donation amount
+$total_donations_query = "SELECT SUM(amount) AS total_donations FROM donations";
+$total_donations_result = $conn->query($total_donations_query);
+$total_donations_data = $total_donations_result->fetch_assoc();
+$total_donations = $total_donations_data['total_donations'] ?? 0; // Default to 0 if no donations
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,9 +72,6 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
             /* Smooth corners */
         }
     </style>
-
-
-
 </head>
 
 <body id="page-top">
@@ -261,7 +290,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-5">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase">Donations</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">3600</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">₱<?= number_format($total_donations, 2); ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fa fa-envelope-open fa-2x text-gray-300" aria-hidden="true"></i>
@@ -276,16 +305,21 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
                         <div class="col-xl-3 col-md-6 mb-2">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-guters align-items-center">
+                                    <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Adoption Rate</div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">65%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        <?php echo $adoption_rate; ?>% <!-- ✅ Display calculated percentage -->
+                                                    </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar" style="width:50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            style="width: <?php echo $adoption_rate; ?>%;"
+                                                            aria-valuenow="<?php echo $adoption_rate; ?>"
+                                                            aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -298,6 +332,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
                             </div>
                         </div>
 
+
                         <!-- Volunteers -->
                         <div class="col-xl-3 col-md-6 mb-2">
                             <a href="admin_volunteer_forms.php" class="text-decoration-none">
@@ -305,8 +340,10 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-5">
-                                                <div class="text-xs font-weight-bold text-warningtext-uppercase">Volunteers</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase">Accepted Volunteers</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $total_accepted_volunteers; ?>
+                                                </div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fa fa-address-card fa-2x text-gray-300" aria-hidden="true"></i>
@@ -316,8 +353,6 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
                                 </div>
                             </a>
                         </div>
-
-
 
                     </div>
                     <br>
