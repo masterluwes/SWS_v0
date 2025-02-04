@@ -28,12 +28,14 @@ $result = $conn->query($query);
         .actions {
             width: 15%;
         }
+
         .proof-of-payment {
             max-width: 100px;
             max-height: 100px;
             cursor: pointer;
             transition: transform 0.2s;
         }
+
         .proof-of-payment:hover {
             transform: scale(1.5);
         }
@@ -78,12 +80,12 @@ $result = $conn->query($query);
                             <?php while ($row = $result->fetch_assoc()) : ?>
                                 <tr data-id="<?= $row['id']; ?>">
                                     <td><?= $row['id']; ?></td>
-                                    <td><?= htmlspecialchars($row['first_name']); ?></td>
-                                    <td><?= htmlspecialchars($row['last_name']); ?></td>
-                                    <td><?= htmlspecialchars($row['email']); ?></td>
-                                    <td><?= htmlspecialchars($row['phone']); ?></td>
-                                    <td>₱<?= number_format($row['amount'], 2); ?></td>
-                                    <td><?= htmlspecialchars($row['bank']); ?></td>
+                                    <td class="editable" data-field="first_name"><?= htmlspecialchars($row['first_name']); ?></td>
+                                    <td class="editable" data-field="last_name"><?= htmlspecialchars($row['last_name']); ?></td>
+                                    <td class="editable" data-field="email"><?= htmlspecialchars($row['email']); ?></td>
+                                    <td class="editable" data-field="phone"><?= htmlspecialchars($row['phone']); ?></td>
+                                    <td class="editable" data-field="amount">₱<?= number_format($row['amount'], 2); ?></td>
+                                    <td class="editable" data-field="bank"><?= htmlspecialchars($row['bank']); ?></td>
                                     <td>
                                         <?php if (!empty($row['proof_of_payment'])) : ?>
                                             <a href="<?= $row['proof_of_payment']; ?>" target="_blank">
@@ -94,9 +96,12 @@ $result = $conn->query($query);
                                         <?php endif; ?>
                                     </td>
                                     <td class="actions">
+                                        <button class="btn btn-primary btn-sm edit-btn">✏️ Edit</button>
+                                        <button class="btn btn-success btn-sm save-btn d-none">💾 Save</button>
                                         <button class="btn btn-danger btn-sm delete-btn">❌ Delete</button>
                                     </td>
                                 </tr>
+
                             <?php endwhile; ?>
                         </tbody>
                     </table>
@@ -147,23 +152,89 @@ $result = $conn->query($query);
 
     <script>
         $(document).ready(function() {
-            // Delete button click event
+            // Handle Edit Action
+            $(".edit-btn").click(function() {
+                let row = $(this).closest("tr");
+                row.find(".editable").attr("contenteditable", "true").addClass("table-warning");
+                row.find(".edit-btn").addClass("d-none"); // Hide Edit button
+                row.find(".save-btn").removeClass("d-none"); // Show Save button
+            });
+
+            // Handle Save Action
+            $(".save-btn").click(function() {
+                let row = $(this).closest("tr");
+                let id = row.data("id");
+                let updates = {};
+                let invalidInput = false; // ✅ Prevent AJAX from running if invalid
+
+                // Get updated values
+                row.find(".editable").each(function() {
+                    let field = $(this).data("field");
+                    let value = $(this).text().trim();
+
+                    // ✅ Prevent negative values in amount
+                    if (field === "amount") {
+                        value = value.replace(/[₱,]/g, ""); // Remove ₱ and commas
+                        if (isNaN(value) || value === "" || parseFloat(value) < 0) {
+                            alert("Error: Amount must be a valid number and cannot be negative.");
+                            invalidInput = true;
+                            return false; // ✅ Stop iteration (break out of .each loop)
+                        }
+                    }
+
+                    updates[field] = value;
+                });
+
+                // ✅ If invalid input detected, reload the page and stop further execution
+                if (invalidInput) {
+                    location.reload();
+                    return;
+                }
+
+                // Send AJAX request to update database
+                $.ajax({
+                    type: "POST",
+                    url: "process_edit_donation.php", // Backend PHP file
+                    data: {
+                        id: id,
+                        updates: JSON.stringify(updates) // Send as JSON
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.status === "success") {
+                            row.find(".editable").removeAttr("contenteditable").removeClass("table-warning");
+                            row.find(".edit-btn").removeClass("d-none"); // Show Edit button
+                            row.find(".save-btn").addClass("d-none"); // Hide Save button
+
+                            // ✅ Format amount properly after saving
+                            let formattedAmount = parseFloat(updates["amount"]).toLocaleString("en-PH", {
+                                style: "currency",
+                                currency: "PHP"
+                            });
+                            row.find(`[data-field='amount']`).text(formattedAmount);
+
+                            alert("Donation updated successfully!");
+                        } else {
+                            alert("Error updating donation: " + response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert("An error occurred. Please try again.");
+                    }
+                });
+            });
+
+            // Handle Delete Action
             $(".delete-btn").click(function() {
                 let row = $(this).closest("tr");
                 let id = row.data("id");
 
-                if (confirm("Are you sure you want to delete this donation record?")) {
-                    $.ajax({
-                        type: "POST",
-                        url: "process_delete_donation.php",
-                        data: { id: id },
-                        success: function(response) {
-                            row.remove();
-                            alert("Donation record deleted successfully!");
-                        },
-                        error: function(xhr, status, error) {
-                            alert("Failed to delete donation record.");
-                        }
+                if (confirm("Are you sure you want to delete this record?")) {
+                    $.post("process_delete_donation.php", {
+                        id: id
+                    }, function(response) {
+                        row.remove();
+                        alert("Donation record deleted successfully!");
                     });
                 }
             });
@@ -171,4 +242,5 @@ $result = $conn->query($query);
     </script>
 
 </body>
+
 </html>
