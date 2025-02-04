@@ -72,7 +72,8 @@ $result = $conn->query($query);
                         <thead class="table-dark">
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Address</th>
@@ -89,7 +90,8 @@ $result = $conn->query($query);
                             <?php while ($row = $result->fetch_assoc()): ?>
                                 <tr data-id="<?= $row['id'] ?>">
                                     <td class="non-editable"><?= htmlspecialchars($row['id']) ?></td>
-                                    <td class="editable" data-field="name"><?= htmlspecialchars($row['first_name'] . " " . $row['last_name']) ?></td>
+                                    <td class="editable" data-field="first_name"><?= htmlspecialchars($row['first_name']) ?></td>
+                                    <td class="editable" data-field="last_name"><?= htmlspecialchars($row['last_name']) ?></td>
                                     <td class="editable" data-field="email"><?= htmlspecialchars($row['email']) ?></td>
                                     <td class="editable" data-field="phone"><?= htmlspecialchars($row['phone']) ?></td>
                                     <td class="editable" data-field="address"><?= htmlspecialchars($row['address']) ?></td>
@@ -162,18 +164,40 @@ $result = $conn->query($query);
                 row.find(".editable").each(function() {
                     let field = $(this).data("field");
                     let value = $(this).text().trim();
-                    updates[field] = value;
+
+                    // Handle "name" properly by splitting into first_name and last_name
+                    if (field === "name") {
+                        let nameParts = value.split(" ");
+                        updates["first_name"] = nameParts[0] || "";
+                        updates["last_name"] = nameParts.slice(1).join(" ") || "";
+                    } else {
+                        updates[field] = value;
+                    }
+
                 });
 
                 // Send AJAX request to update database
-                $.post("update_adoption.php", {
-                    id: id,
-                    updates: updates
-                }, function(response) {
-                    console.log(response);
-                    location.reload();
+                $.ajax({
+                    type: "POST",
+                    url: "update_adoption.php",
+                    data: {
+                        id: id,
+                        updates: JSON.stringify(updates) // Send as JSON
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.status === "success") {
+                            location.reload();
+                        } else {
+                            alert("Error updating record: " + response.message);
+                        }
+                    },
+                    error: function() {
+                        alert("An error occurred. Please try again.");
+                    }
                 });
             });
+
 
             // Handle Delete Action
             $(".delete-btn").click(function() {
