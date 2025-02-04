@@ -480,7 +480,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
                 let pieChart = new Chart(pieCtx, {
                     type: "pie",
                     data: {
-                        labels: ["Adopted", "Pending", "Available"],
+                        labels: ["Adopt", "Donate", "Fundraising"],
                         datasets: [{
                             data: [35, 25, 40], // Sample data (replace with real data)
                             backgroundColor: [

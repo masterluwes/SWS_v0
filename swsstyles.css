@@ -761,7 +761,7 @@ header {
 .donation-form h3 {
     font-size: 1.5rem;
     color: #2B3467;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem;  
 }
 
 .donation-form p {
@@ -769,6 +769,8 @@ header {
     color: #2B3467;
     margin-bottom: 1.5rem;
     line-height: 1.6;
+    text-align: left;
+    display: block;
 }
 
 .donation-options {

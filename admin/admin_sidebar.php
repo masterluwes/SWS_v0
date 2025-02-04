@@ -54,7 +54,7 @@
                 <a class="collapse-item" href="adopt_page.php">Adopt a Pet Page</a>
                 <a class="collapse-item" href="success_page.php">Success Stories Blog Page</a>
                 <a class="collapse-item" href="event_page.php">Events & Campaign</a>
-                <a class="collapse-item" href="#">Contact Us</a>
+                <!-- <a class="collapse-item" href="#">Contact Us</a> -->
             </div>
         </div>
     </li>

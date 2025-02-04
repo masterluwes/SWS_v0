@@ -63,13 +63,9 @@
         <div class="container">
             <div class="donate-content">
                 <div class="donation-form">
-                    <h3>Donate Online</h3>
-                    <p>A <strong>small</strong> donation from you will make a whole world of difference to these strays while waiting for their forever homes.</p>
-                    <div class="donation-options">
-                        <button class="donation-btn active" id="one-time-btn">One-time Donation</button>
-                        <button class="donation-btn" id="recurring-btn">Recurring Donation</button>
-                    </div>
-                    <form id="one-time-form">
+                    <h3>Donate For Us!</h3>
+                    <p style="text-align: left;">A <strong>small</strong> donation from you will make a whole world of difference to these strays while waiting for their forever homes.</p>
+                    <form id="one-time-form" enctype="multipart/form-data">
                         <label for="first-name">First Name</label>
                         <input type="text" id="first-name" name="first-name" placeholder="Enter your first name">
 
@@ -85,39 +81,45 @@
                         <label for="amount">Amount *</label>
                         <input type="number" id="amount" name="amount" placeholder="Enter donation amount" required>
 
-                        <button type="submit" class="donate-submit">Donate</button>
-                    </form>
-                    <form id="recurring-form" style="display: none;">
-                        <label for="first-name-recurring">First Name</label>
-                        <input type="text" id="first-name-recurring" name="first-name" placeholder="Enter your first name">
-
-                        <label for="last-name-recurring">Last Name</label>
-                        <input type="text" id="last-name-recurring" name="last-name" placeholder="Enter your last name">
-
-                        <label for="email-recurring">Email</label>
-                        <input type="email" id="email-recurring" name="email" placeholder="Enter your email">
-
-                        <label for="phone-recurring">Phone</label>
-                        <input type="tel" id="phone-recurring" name="phone" placeholder="Enter your phone number">
-
-                        <label for="amount-recurring">Amount *</label>
-                        <input type="number" id="amount-recurring" name="amount" placeholder="Enter donation amount" required>
-
-                        <label for="schedule">Schedule</label>
-                        <select id="schedule" name="schedule">
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
+                        <label for="bank">Select Bank *</label>
+                        <select id="bank" name="bank" required>
+                            <option value="" disabled selected>-- Choose Bank --</option>
+                            <option value="BDO">Banco de Oro (BDO)</option>
+                            <option value="BPI">Bank of the Philippine Islands (BPI)</option>
+                            <option value="Unionbank">Unionbank</option>
+                            <option value="Paypal">Paypal</option>
+                            <option value="Paymaya">Paymaya / Coins.ph / Gcash</option>
                         </select>
 
-                        <label for="start-date">Start Date</label>
-                        <input type="date" id="start-date" name="start-date" required>
-
-                        <label for="end-date">End Date</label>
-                        <input type="date" id="end-date" name="end-date" required>
+                        <label for="proof-of-payment">Upload Proof of Donation *</label>
+                        <input type="file" id="proof-of-payment" name="proof-of-payment" accept=".png, .jpeg, .jpg, .pdf" required>
 
                         <button type="submit" class="donate-submit">Donate</button>
                     </form>
                 </div>
+
+                <!-- Success Modal -->
+                <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="successModalLabel">Donation Submitted</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="successMessage">Your donation has been successfully submitted.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- Fix the OK button by adding proper Bootstrap dismiss -->
+                                <button type="button" class="btn btn-primary" id="reloadPage" data-bs-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="donate-info">
                     <div class="donation-section">
                         <p><strong>Banco de Oro (BDO)</strong><br>Account Name: Strays Worth Saving - SWS<br>Account No.: 0022 8600 2637</p><br>
@@ -549,6 +551,10 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
 </body>
 
 <!-- jQuery should load first -->
@@ -614,20 +620,24 @@
         const oneTimeForm = document.getElementById("one-time-form");
         const recurringForm = document.getElementById("recurring-form");
 
-        oneTimeBtn.addEventListener("click", () => {
-            oneTimeForm.style.display = "block";
-            recurringForm.style.display = "none";
-            oneTimeBtn.classList.add("active");
-            recurringBtn.classList.remove("active");
-        });
+        // ✅ Check if elements exist before adding event listeners
+        if (oneTimeBtn && recurringBtn && oneTimeForm && recurringForm) {
+            oneTimeBtn.addEventListener("click", () => {
+                oneTimeForm.style.display = "block";
+                recurringForm.style.display = "none";
+                oneTimeBtn.classList.add("active");
+                recurringBtn.classList.remove("active");
+            });
 
-        recurringBtn.addEventListener("click", () => {
-            recurringForm.style.display = "block";
-            oneTimeForm.style.display = "none";
-            recurringBtn.classList.add("active");
-            oneTimeBtn.classList.remove("active");
-        });
+            recurringBtn.addEventListener("click", () => {
+                recurringForm.style.display = "block";
+                oneTimeForm.style.display = "none";
+                recurringBtn.classList.add("active");
+                oneTimeBtn.classList.remove("active");
+            });
+        }
     });
+
 
     const backToTopButton = document.getElementById("back-to-top");
 
@@ -663,6 +673,57 @@
         });
     };
 </script>
+
+<script>
+    $(document).ready(function() {
+        $("#one-time-form").submit(function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            let formData = new FormData(this); // Get form data
+
+            $.ajax({
+                type: "POST",
+                url: "admin/process_donation.php", // Ensure the correct path
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: "json",
+                beforeSend: function() {
+                    $("button[type='submit']").prop("disabled", true);
+                },
+                success: function(response) {
+                    $("button[type='submit']").prop("disabled", false);
+
+                    if (response.status === "success") {
+                        $("#successMessage").html(response.message);
+                        $("#successModal").modal("show"); // Show Bootstrap Modal
+
+                        // ✅ Clear form after modal is displayed
+                        $("#successModal").on("shown.bs.modal", function() {
+                            $("#one-time-form")[0].reset();
+                        });
+
+                    } else {
+                        $("#errorMessage").html(response.message);
+                        $("#errorModal").modal("show");
+                    }
+                },
+                error: function() {
+                    $("button[type='submit']").prop("disabled", false);
+                    $("#errorMessage").html("An unexpected error occurred. Please try again.");
+                    $("#errorModal").modal("show");
+                }
+            });
+        });
+
+        // ✅ Ensure form clears when modal is closed
+        $("#successModal, #errorModal").on("hidden.bs.modal", function() {
+            $("#one-time-form")[0].reset();
+        });
+    });
+</script>
+
+
 
 
 

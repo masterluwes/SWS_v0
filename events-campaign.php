@@ -54,7 +54,7 @@ $conn->close();
                 <ul class="navbar">
                     <li><a href="homepage.php">Home</a></li>
                     <li><a href="adopt.php">Adopt a Pet</a></li>
-                    <li><a href="getinvolved.html">Get Involved</a></li>
+                    <li><a href="getinvolved.php">Get Involved</a></li>
                     <li><a href="success-stories.php">Success Stories</a></li>
                     <li><a href="events-campaign.php">Events & Campaigns</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
