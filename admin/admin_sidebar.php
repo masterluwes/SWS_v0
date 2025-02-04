@@ -28,15 +28,15 @@
             <span>Users</span></a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+    <!-- Divider
+    <hr class="sidebar-divider"> -->
 
-    <!-- Nav Item - Report and Analytics -->
+    <!-- Nav Item - Report and Analytics
     <li class="nav-item">
         <a class="nav-link" href="report_analytics.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Report and Analytics</span></a>
-    </li>
+    </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -59,15 +59,15 @@
         </div>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+     <!-- Divider
+    <hr class="sidebar-divider"> -->
 
-    <!-- Nav Item - Fundraising and Donations -->
+    <!-- Nav Item - Fundraising and Donations 
     <li class="nav-item">
         <a class="nav-link" href="donation_fundraising.php">
             <i class="fas fa-fw fa-hand-holding-usd"></i>
             <span>Donation and Fundraising</span></a>
-    </li>
+    </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider">

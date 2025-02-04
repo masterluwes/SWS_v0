@@ -41,7 +41,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
         }
     </style>
 
-    
+
 
 </head>
 
@@ -236,19 +236,21 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
 
                         <!-- Users -->
                         <div class="col-xl-3 col-md-6 mb-2">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-5">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase">Users</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa fa-user fa-2x text-gray-300" aria-hidden="true"></i>
+                            <a href="users.php" class="text-decoration-none">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-5">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase">Users</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa fa-user fa-2x text-gray-300" aria-hidden="true"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <!-- Donations -->
@@ -294,21 +296,23 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
                             </div>
                         </div>
 
-                        <!-- Donations -->
+                        <!-- Volunteers -->
                         <div class="col-xl-3 col-md-6 mb-2">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-5">
-                                            <div class="text-xs font-weight-bold text-warningtext-uppercase">Volunteers</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa fa-address-card fa-2x text-gray-300" aria-hidden="true"></i>
+                            <a href="admin_volunteer_forms.php" class="text-decoration-none">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-5">
+                                                <div class="text-xs font-weight-bold text-warningtext-uppercase">Volunteers</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa fa-address-card fa-2x text-gray-300" aria-hidden="true"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
 
