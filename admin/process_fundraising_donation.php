@@ -53,7 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "JUSTICE FOR HOLLY" => 10000,
             "FUNDRAISING FOR JADE" => 7000,
             "FUNDRAISING FOR MARINA" => 7000,
-            "HELP ROSS!" => 60000
+            "HELP ROSS!" => 60000,
+            "FUNDRAISING FOR SIA THE CAT" => 7000
         ];
 
         $goalAmount = $fundraising_goals[$fundraising_name] ?? 10000; // Default goal

@@ -11,7 +11,7 @@ if (!isset($_GET['fundraising_name'])) {
 }
 
 $fundraising_name = trim($_GET['fundraising_name']);
-// $fundraising_name = preg_replace('/[^A-Za-z0-9\s!]/', '', $fundraising_name); // Allow special characters like "!"
+$fundraising_name = preg_replace('/[^A-Za-z0-9\s!]/', '', $fundraising_name); // Allow special characters like "!"
 
 // Log the fundraising name used
 error_log("Fetching donations for: " . $fundraising_name);
@@ -47,7 +47,8 @@ $fundraising_goals = [
     "JUSTICE FOR HOLLY" => 10000,
     "FUNDRAISING FOR JADE" => 7000,
     "FUNDRAISING FOR MARINA" => 7000,
-    "HELP ROSS!" => 60000
+    "HELP ROSS!" => 60000,
+    "FUNDRAISING FOR SIA THE CAT" => 7000
 ];
 
 $goalAmount = $fundraising_goals[$fundraising_name] ?? 10000; // Default goal

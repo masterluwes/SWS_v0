@@ -417,7 +417,7 @@
                 <div class="fund-card-content">
                     <h3 class="fund-card-title">Fundraising for Sia, the Cat</h3>
                     <p class="fund-description">Sia is considered to be in critical condition and is now on intensive care and meds. She is nebulized regularly and on syringe feeding. Please pray for her survival. </p>
-                    <a href="fundraising/fp-sia.html" class="learn-more-btn">Learn more</a>
+                    <a href="fundraising/fp-sia.php" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
