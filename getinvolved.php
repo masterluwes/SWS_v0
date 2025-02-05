@@ -425,7 +425,7 @@
                 <div class="fund-card-content">
                     <h3 class="fund-card-title">Fundraising for Jade</h3>
                     <p class="fund-description">We are fundraising ₱7,000 for Jade, a stray dog found helpless and in pain at a gas station on Molino Blvd. She was reportedly run over by a vehicle while asleep and urgently needs rescue and initial vet care. Please help Jade recover!</p>
-                    <a href="fundraising/fp-jade.html" class="learn-more-btn">Learn more</a>
+                    <a href="fundraising/fp-jade.php" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
