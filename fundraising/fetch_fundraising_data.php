@@ -4,37 +4,24 @@ include '../admin/db.php';
 header('Content-Type: application/json'); // Ensure JSON response
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 
-// Get the correct fundraising name from the GET request
-$fundraising_name = isset($_GET['fundraising_name']) ? trim($_GET['fundraising_name']) : "5 FUND DRIVE FOR SWS SHELTER RESCUES";
-
-// Normalize to match database format
-$fundraising_name = preg_replace('/[^A-Za-z0-9\s]/', '', $fundraising_name); // Remove special characters
-
-if ($fundraising_name === "Chucky") {
-    $fundraising_name = "FUNDRAISING FOR CHUCKY"; // Match database entry
+// Retrieve fundraising name from the request
+if (!isset($_GET['fundraising_name'])) {
+    echo json_encode(["status" => "error", "message" => "No fundraising name provided"]);
+    exit();
 }
+
+$fundraising_name = trim($_GET['fundraising_name']);
+$fundraising_name = preg_replace('/[^A-Za-z0-9\s!]/', '', $fundraising_name); // Allow special characters like "!"
 
 // Log the fundraising name used
 error_log("Fetching donations for: " . $fundraising_name);
 
-// Check if data exists for this fundraiser
-$query_test = "SELECT COUNT(*) AS exists_check FROM fundraising_donations WHERE fundraising_name = ?";
-$stmt_test = $conn->prepare($query_test);
-$stmt_test->bind_param("s", $fundraising_name);
-$stmt_test->execute();
-$result_test = $stmt_test->get_result();
-$data_test = $result_test->fetch_assoc();
-
-if ($data_test['exists_check'] == 0) {
-    error_log("No records found for fundraising name: " . $fundraising_name);
-}
-
 // Fetch total donations and donor count
-$query = "SELECT COALESCE(SUM(amount), 0) AS total_raised, COUNT(id) AS donor_count 
+$query = "SELECT IFNULL(SUM(amount), 0) AS total_raised, COUNT(id) AS donor_count 
           FROM fundraising_donations 
           WHERE fundraising_name = ?";
-
 $stmt = $conn->prepare($query);
+
 if (!$stmt) {
     die(json_encode(["status" => "error", "message" => "SQL Error: " . $conn->error]));
 }
@@ -45,11 +32,20 @@ $result = $stmt->get_result();
 $data = $result->fetch_assoc();
 
 // Log fetched data for debugging
-error_log("Fetched Data: " . json_encode($data));
+error_log("Fetched Data for $fundraising_name: " . json_encode($data));
 
 $totalRaised = $data['total_raised'] ?? 0;
 $donorCount = $data['donor_count'] ?? 0;
-$goalAmount = ($fundraising_name === "FUNDRAISING FOR CHUCKY") ? 7000 : 10000; // Different goals for different fundraisers
+
+// Define goal amounts per fundraiser
+$fundraising_goals = [
+    "FUNDRAISING FOR CHUCKY" => 7000,
+    "FUNDRAISING FOR GENERAL" => 12000,
+    "HELP GHOST!" => 7500,
+    "5 FUND DRIVE FOR SWS SHELTER RESCUES" => 10000
+];
+
+$goalAmount = $fundraising_goals[$fundraising_name] ?? 10000; // Default goal
 $progressPercentage = ($totalRaised / $goalAmount) * 100;
 $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 

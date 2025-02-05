@@ -1,8 +1,7 @@
-@ -0,0 +1,397 @@
 <?php
 include '../admin/db.php';
 
-$fundraising_name = "FUNDRAISING FOR CHUCKY";
+$fundraising_name = "FUNDRAISING FOR GENERAL";
 
 // Fetch total amount raised and donor count
 $query = "SELECT IFNULL(SUM(amount), 0) AS total_raised, COUNT(id) AS donor_count 
@@ -26,7 +25,7 @@ error_log("Donor Count: " . $data['donor_count']);
 // Ensure default values
 $totalRaised = $data['total_raised'] ?? 0;
 $donorCount = $data['donor_count'] ?? 0;
-$goalAmount = 7000; // Goal for Chucky's fundraiser
+$goalAmount = 12000; // Goal for General's fundraiser
 $progressPercentage = ($totalRaised / $goalAmount) * 100;
 $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 ?>
@@ -38,7 +37,7 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="media2/logo1.png">
-    <title> SWS - Fundraising for Chucky! </title>
+    <title> SWS - Fundraising for General </title>
     <link rel="stylesheet" href="fundraisingpage-styles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
 </head>
@@ -70,19 +69,22 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 
     <div class="main-column">
         <section class="fundraising-header">
-            <h2 class="fundraising-title"> FUNDRAISING FOR CHUCKY! </h2>
+            <h2 class="fundraising-title">FUNDRAISING FOR GENERAL</h2>
         </section>
 
         <section class="fundraising-body">
             <div class="image-donation-cont">
                 <div class="images-container">
                     <div class="main-image">
-                        <img src="../media/fp-chucky1.jpg" class="main-image" />
+                        <video class="main-image" controls autoplay muted>
+                            <source src="../media/general.mp4" type="video/mp4" class="main-image">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                     <div class="thumbnails">
-                        <img src="../media/fp-chucky2.jpg" />
-                        <img src="../media/fp-chucky3.jpg" />
-                        <img src="../media/fp-chucky4.jpg" />
+                        <img src="../media/fp-general2.jpg" />
+                        <img src="../media/fp-general3.jpg" />
+                        <img src="../media/fp-general4.jpg" />
                     </div>
                 </div>
                 <div class="donation-container">
@@ -149,22 +151,28 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
             <div class="campaign-deets-section">
                 <section class="campaign-details">
                     <p class="campstory-label"> Campaign Story </p>
-                    <p class="about-label"> About Chucky </p>
+                    <p class="about-label"> About </p>
                     <p class="about-details">
-                        When informed about this poor dog with a huge tumor on its rear, we had it searched and when found, our rescuer Jun brought the dog to Vetlink Vet Clinic.
-                        The dog named Chucky indeed has a big lump, which is actually perineal hernia, according to his attending vets. <br> <br>
-                        Chucky was found negative for distemper but positive for ehrlichia and babesia. He has a severe skin problem. The mass in his rear are full of feces.
-                        Chucky would need surgery to repair the problem. He is now on IV fluids and meds. <br> <br>
-                        Chucky’s CBC and bloodchem test results are as follows: “CBC, mataas po ang lymphocytes and monocytes nia signifies infection po. Anemia noted rin po. Sobrang baba rin po ng kanyang platelet; <br> <br>
-                        Biochemistry, high total protein and globulin due to inflammation and infection and mababa po cholesterol possibly dahil di pa nakain and dahil payat rin po.
-                        High total bilirubin and low alp possibly liver problem po. CK (Muscle enzymes) are high due to muscle trauma dahil po sa hernia.” <br> <br>
-                        Since he has very low platelet count, Chucky has to be monitored closely and the blood tests repeated after several days to know if he is fit for surgery as now, he is not.
-                        Please pray for this poor dog and his successful operation. May he get a second chance at a better life. <br> <br>
-                        To those with extra to share for this poor dog as well as our many other confined rescues, please kindly send them your support.
-                        We need all the help we can get to allow us to rescue more as we have no more funds. Thank you and God bless! <br> </p>
-                    <!--<p class="petnamestory-label"> 's Story </p>
-                    <p class="petname-story"> 
-                        <br> </p> -->
+                        Concerned animal lover and SWS rescue Otto’s furmom contacted SWS for help. This is for this poor abandoned small dog from General Trias, Cavite
+                        that was reported to have been abandoned by its former owner for their iability to bring the dog to the vet.
+                        The dog I named General was left tied up in a water tank near the street. He was left under the care of a guard who was clueless
+                        as to what to do with the dog. <br> </p>
+                    <p class="petnamestory-label"> General's Story </p>
+                    <p class="petname-story">
+                        Sympathetic and worried about the dog’s condition, we arranged rescue. It seemed like the dog has an exposed tumor or TVT Iesion.
+                        Rescuer Jun went all the way to Gentri and picked up General for treatment at Vetlink Vet Clinic. <br> <br>
+                        He was found negative for distemper but positive for anaplasma. Upon close observation, it was learned that General does not have TVT.
+                        What we thought to be a tum0r is actually one of his testicles that is out of its sac.
+                        Something must have happened to him that resulted to this very painful experience. <br> <br>
+                        What is even more bothersome is that this looked like it happened sometime ago.
+                        He is no longer in so much pain and the parts of the testicle looked healed but this also means that General went through so much pain for a long time.
+                        Surgery, particularly scrotaI abIation is necessary. His CBC showed he is anemic and with very high infection. This comes as no surprise.
+                        The blood chem results are also not normal — low ALB, TP at BUN, indication of malnutrition. <br> <br>
+                        His hair is too long and badly matted. He was given a medicated bath and fur was shaved.
+                        He will need to first reach a stable body and blood before he can undergo surgery. Please pray for General and his healing.
+                        May his operation be successful so that he can recover and be adopted. <br> <br>
+                        As this is another costly vetting, where surgery alone costs 12,000, we really need your assistance.
+                        Please do not get tired of supporting these innocent angels. Thank you and God bless! <br> </p>
                     <p class="donation-details-label"> Donate Now! </p>
                     <p class="donation-details">
                         To those who want to donate, please send thru: <br> <br>
@@ -188,22 +196,22 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                 <div class="campaign-section">
                     <h2 class="campaign-title">More Fundraising Campaigns</h2>
                     <div class="campaign-list">
-                        <a href="fp-ghost.html" style="text-decoration: none;">
+                        <a href="fp-5forshelter.html" style="text-decoration: none;">
                             <div class="campaign-card">
-                                <img src="../media/fp-ghost6.jpg" class="campaign-image" />
-                                <h3 class="campaign-name">HELP GHOST!</h3>
+                                <img src="../media/fp-img7.jpg" class="campaign-image" />
+                                <h3 class="campaign-name">₱5 FUND DRIVE FOR SWS SHELTER RESCUES!</h3>
                             </div>
                         </a>
-                        <a href="fp-granny.html" style="text-decoration: none;">
+                        <a href="fp-marina.html" style="text-decoration: none;">
                             <div class="campaign-card">
-                                <img src="../media/fp-img1.jpg" class="campaign-image" />
-                                <h3 class="campaign-name">5PHP FUND DRIVE FOR GRANNY!</h3>
+                                <img src="../media/fp-marina1.jpg" class="campaign-image" />
+                                <h3 class="campaign-name">FUNDRAISING FOR MARINA</h3>
                             </div>
                         </a>
-                        <a href="fp-general.html" style="text-decoration: none;">
+                        <a href="fp-sia.html" style="text-decoration: none;">
                             <div class="campaign-card">
-                                <img src="../media/fp-general2.jpg" class="campaign-image" />
-                                <h3 class="campaign-name">FUNDRAISING FOR GENERAL</h3>
+                                <img src="../media/fp-sia1.jpg" class="campaign-image" />
+                                <h3 class="campaign-name">FUNDRAISING FOR SIA, THE CAT</h3>
                             </div>
                         </a>
                     </div>
@@ -239,7 +247,6 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
     </footer>
     <button id="back-to-top" title="Go to top">↑</button>
 </body>
-
 <script>
     const backToTopButton = document.getElementById("back-to-top");
 
@@ -370,29 +377,28 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    function fetchUpdatedDonations() {
-        fetch('../fundraising/fetch_fundraising_data.php?fundraising_name=FUNDRAISING%20FOR%20CHUCKY&nocache=' + new Date().getTime(), {
-                cache: "no-store"
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Fetched Data:", data);
-                if (data.totalRaised !== undefined) {
-                    document.querySelector(".donation-asof").textContent = `₱ ${parseFloat(data.totalRaised).toLocaleString()}`;
-                    document.querySelector(".donor-count").textContent = `${data.donorCount} donors`;
-                    document.querySelector(".progress").style.width = `${data.progressPercentage}%`;
-                } else {
-                    console.error("Invalid data format", data);
-                }
-            })
-            .catch(error => console.error("Error fetching donation data:", error));
-    }
+    document.addEventListener("DOMContentLoaded", function() {
+        function fetchUpdatedDonations() {
+            fetch('../fundraising/fetch_fundraising_data.php?fundraising_name=FUNDRAISING%20FOR%20GENERAL&nocache=' + new Date().getTime(), {
+                    cache: "no-store"
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Fetched Data:", data);
+                    if (data.totalRaised !== undefined) {
+                        document.querySelector(".donation-asof").textContent = `₱ ${parseFloat(data.totalRaised).toLocaleString()}`;
+                        document.querySelector(".donor-count").textContent = `${data.donorCount} donors`;
+                        document.querySelector(".progress").style.width = `${data.progressPercentage}%`;
+                    } else {
+                        console.error("Invalid data format", data);
+                    }
+                })
+                .catch(error => console.error("Error fetching donation data:", error));
+        }
 
-    fetchUpdatedDonations();
-    setInterval(fetchUpdatedDonations, 2000);
-});
-
+        fetchUpdatedDonations();
+        setInterval(fetchUpdatedDonations, 2000);
+    });
 </script>
 
 </html>

@@ -392,7 +392,7 @@
                 <div class="fund-card-content">
                     <h3 class="fund-card-title">Fundraising for the surgery of GENERAL!</h3>
                     <p class="fund-description">General is currently on meds to stabilize his body before he gets his much needed surgery — scrotaI abIation. Due to lack of funds, we badly need your support.<br><br></p>
-                    <a href="fundraising/fp-general.html" class="learn-more-btn">Learn more</a>
+                    <a href="fundraising/fp-general.php" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
@@ -458,7 +458,7 @@
                 <div class="fund-card-content">
                     <h3 class="fund-card-title">Help Ghost!</h3>
                     <p class="fund-description">Ghost, a dog with severe TVT, needs urgent chemo. His owner can't afford treatment, so SWS is fundraising. He’s had his first shot but needs more. Please help us support his recovery!</p>
-                    <a href="fundraising/fp-ghost.html" class="learn-more-btn">Learn more</a>
+                    <a href="fundraising/fp-ghost.php" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
         </div>

@@ -1,8 +1,7 @@
-@ -0,0 +1,397 @@
 <?php
 include '../admin/db.php';
 
-$fundraising_name = "FUNDRAISING FOR CHUCKY";
+$fundraising_name = "HELP GHOST!";
 
 // Fetch total amount raised and donor count
 $query = "SELECT IFNULL(SUM(amount), 0) AS total_raised, COUNT(id) AS donor_count 
@@ -26,7 +25,7 @@ error_log("Donor Count: " . $data['donor_count']);
 // Ensure default values
 $totalRaised = $data['total_raised'] ?? 0;
 $donorCount = $data['donor_count'] ?? 0;
-$goalAmount = 7000; // Goal for Chucky's fundraiser
+$goalAmount = 7500; // Goal for Ghost's fundraiser
 $progressPercentage = ($totalRaised / $goalAmount) * 100;
 $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 ?>
@@ -38,7 +37,7 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="media2/logo1.png">
-    <title> SWS - Fundraising for Chucky! </title>
+    <title> SWS - Help Ghost! </title>
     <link rel="stylesheet" href="fundraisingpage-styles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
 </head>
@@ -70,19 +69,19 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 
     <div class="main-column">
         <section class="fundraising-header">
-            <h2 class="fundraising-title"> FUNDRAISING FOR CHUCKY! </h2>
+            <h2 class="fundraising-title"> HELP GHOST! </h2>
         </section>
 
         <section class="fundraising-body">
             <div class="image-donation-cont">
                 <div class="images-container">
                     <div class="main-image">
-                        <img src="../media/fp-chucky1.jpg" class="main-image" />
+                        <img src="../media/fp-ghost5.jpg" class="main-image" />
                     </div>
                     <div class="thumbnails">
-                        <img src="../media/fp-chucky2.jpg" />
-                        <img src="../media/fp-chucky3.jpg" />
-                        <img src="../media/fp-chucky4.jpg" />
+                        <img src="../media/fp-ghost1.jpg" />
+                        <img src="../media/fp-ghost3.jpg" />
+                        <img src="../media/fp-ghost4.jpg" />
                     </div>
                 </div>
                 <div class="donation-container">
@@ -109,7 +108,7 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                     <h2>Donate to <span id="fundraising-title"></span></h2>
                     <br>
                     <form id="fundraising-donation-form" enctype="multipart/form-data">
-                        <input type="hidden" id="fundraising-name" name="fundraising-name" value="CHUCKY">
+                        <input type="hidden" id="fundraising-name" name="fundraising-name" value="HELP GHOST!">
 
 
                         <label for="first-name">First Name</label>
@@ -149,19 +148,13 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
             <div class="campaign-deets-section">
                 <section class="campaign-details">
                     <p class="campstory-label"> Campaign Story </p>
-                    <p class="about-label"> About Chucky </p>
+                    <p class="about-label"> About Ghost </p>
                     <p class="about-details">
-                        When informed about this poor dog with a huge tumor on its rear, we had it searched and when found, our rescuer Jun brought the dog to Vetlink Vet Clinic.
-                        The dog named Chucky indeed has a big lump, which is actually perineal hernia, according to his attending vets. <br> <br>
-                        Chucky was found negative for distemper but positive for ehrlichia and babesia. He has a severe skin problem. The mass in his rear are full of feces.
-                        Chucky would need surgery to repair the problem. He is now on IV fluids and meds. <br> <br>
-                        Chucky’s CBC and bloodchem test results are as follows: “CBC, mataas po ang lymphocytes and monocytes nia signifies infection po. Anemia noted rin po. Sobrang baba rin po ng kanyang platelet; <br> <br>
-                        Biochemistry, high total protein and globulin due to inflammation and infection and mababa po cholesterol possibly dahil di pa nakain and dahil payat rin po.
-                        High total bilirubin and low alp possibly liver problem po. CK (Muscle enzymes) are high due to muscle trauma dahil po sa hernia.” <br> <br>
-                        Since he has very low platelet count, Chucky has to be monitored closely and the blood tests repeated after several days to know if he is fit for surgery as now, he is not.
-                        Please pray for this poor dog and his successful operation. May he get a second chance at a better life. <br> <br>
-                        To those with extra to share for this poor dog as well as our many other confined rescues, please kindly send them your support.
-                        We need all the help we can get to allow us to rescue more as we have no more funds. Thank you and God bless! <br> </p>
+                        It was SWS lawyer, Atty. Mariline Marcelino Lee, who messaged SWS for help with this poor dog suffering from a severe case of TVT.
+                        The dog has an owner but is unable to afford vetting. The tumors are spread out already and immediate vetting is needed. <br> <br>
+                        SWS agreed to fundraise the vetting of Ghost and as of yesterday, this dog received his first chemo shot. He will be needing many more and your help is badly needed
+                        to allow us to afford his chemo and meds. <br> <br>
+                        To those with extra, please donate for Ghost. Please pray that the chemo will work and he will be back to his normal life. Thank you and God bless! <br> </p>
                     <!--<p class="petnamestory-label"> 's Story </p>
                     <p class="petname-story"> 
                         <br> </p> -->
@@ -188,12 +181,6 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                 <div class="campaign-section">
                     <h2 class="campaign-title">More Fundraising Campaigns</h2>
                     <div class="campaign-list">
-                        <a href="fp-ghost.html" style="text-decoration: none;">
-                            <div class="campaign-card">
-                                <img src="../media/fp-ghost6.jpg" class="campaign-image" />
-                                <h3 class="campaign-name">HELP GHOST!</h3>
-                            </div>
-                        </a>
                         <a href="fp-granny.html" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-img1.jpg" class="campaign-image" />
@@ -204,6 +191,12 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                             <div class="campaign-card">
                                 <img src="../media/fp-general2.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">FUNDRAISING FOR GENERAL</h3>
+                            </div>
+                        </a>
+                        <a href="fp-5forshelter.html" style="text-decoration: none;">
+                            <div class="campaign-card">
+                                <img src="../media/fp-img7.jpg" class="campaign-image" />
+                                <h3 class="campaign-name">₱5 FUND DRIVE FOR SWS SHELTER RESCUES!</h3>
                             </div>
                         </a>
                     </div>
@@ -365,34 +358,33 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
         fetchUpdatedDonations();
 
         // ✅ Also refresh data every 5 seconds
-        setInterval(fetchUpdatedDonations, 5000);
+        setInterval(fetchUpdatedDonations, 2000);
     });
 </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-    function fetchUpdatedDonations() {
-        fetch('../fundraising/fetch_fundraising_data.php?fundraising_name=FUNDRAISING%20FOR%20CHUCKY&nocache=' + new Date().getTime(), {
-                cache: "no-store"
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Fetched Data:", data);
-                if (data.totalRaised !== undefined) {
-                    document.querySelector(".donation-asof").textContent = `₱ ${parseFloat(data.totalRaised).toLocaleString()}`;
-                    document.querySelector(".donor-count").textContent = `${data.donorCount} donors`;
-                    document.querySelector(".progress").style.width = `${data.progressPercentage}%`;
-                } else {
-                    console.error("Invalid data format", data);
-                }
-            })
-            .catch(error => console.error("Error fetching donation data:", error));
-    }
+        function fetchUpdatedDonations() {
+            fetch('../fundraising/fetch_fundraising_data.php?fundraising_name=HELP%20GHOST!&nocache=' + new Date().getTime(), {
+                    cache: "no-store"
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Fetched Data:", data);
+                    if (data.totalRaised !== undefined) {
+                        document.querySelector(".donation-asof").textContent = `₱ ${parseFloat(data.totalRaised).toLocaleString()}`;
+                        document.querySelector(".donor-count").textContent = `${data.donorCount} donors`;
+                        document.querySelector(".progress").style.width = `${data.progressPercentage}%`;
+                    } else {
+                        console.error("Invalid data format", data);
+                    }
+                })
+                .catch(error => console.error("Error fetching donation data:", error));
+        }
 
-    fetchUpdatedDonations();
-    setInterval(fetchUpdatedDonations, 2000);
-});
-
-</script>
+        fetchUpdatedDonations();
+        setInterval(fetchUpdatedDonations, 5000);
+    });
+    </script>
 
 </html>
