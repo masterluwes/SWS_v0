@@ -409,7 +409,7 @@
                 <div class="fund-card-content">
                     <h3 class="fund-card-title">Fundraising for Marina</h3>
                     <p class="fund-description">Marina was found by Rescuer Jun, weak and in pain with severe injuries. She was treated for wounds, fractures, infection, and anemia at the Vetlink Clinic. Her recovery will be long and costly. Please support Marina’s fight and help us continue saving lives. Thank you.</p>
-                    <a href="fundraising/fp-marina.html" class="learn-more-btn">Learn more</a>
+                    <a href="fundraising/fp-marina.php" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
