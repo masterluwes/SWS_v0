@@ -8,10 +8,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
     $amount = $_POST['amount'];
     $bank = $_POST['bank'];
-    $fundraising_name = trim($_POST['fundraising-name']); // Remove spaces
-    $fundraising_name = preg_replace('/[^A-Za-z0-9\s]/', '', $fundraising_name); // Remove special characters like ₱ or !
-    $fundraising_name = "5 FUND DRIVE FOR SWS SHELTER RESCUES"; // Force correct name
+    $fundraising_name = trim($_POST['fundraising-name']); // Ensure correct fundraiser name
+    $fundraising_name = preg_replace('/[^A-Za-z0-9\s]/', '', $fundraising_name); // Remove special characters
 
+    // Ensure correct fundraising name format
+    if ($fundraising_name === "Chucky") {
+        $fundraising_name = "FUNDRAISING FOR CHUCKY"; // Standardized
+    }
 
     // Validate Amount
     if ($amount <= 0) {
@@ -40,8 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $stmt2->get_result();
         $data = $result->fetch_assoc();
 
-        echo json_encode(["status" => "success", "totalRaised" => $data['total_raised'], "donorCount" => $data['donor_count'], "goal" => 10000]);
+        // Return correct fundraiser goal
+        $goalAmount = ($fundraising_name === "FUNDRAISING FOR CHUCKY") ? 7000 : 10000; 
+
+        echo json_encode(["status" => "success", "totalRaised" => $data['total_raised'], "donorCount" => $data['donor_count'], "goal" => $goalAmount]);
     } else {
         echo json_encode(["status" => "error", "message" => "Failed to save donation"]);
     }
 }
+?>

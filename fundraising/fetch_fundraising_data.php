@@ -4,9 +4,15 @@ include '../admin/db.php';
 header('Content-Type: application/json'); // Ensure JSON response
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 
-$fundraising_name = trim("5 FUND DRIVE FOR SWS SHELTER RESCUES");
-$fundraising_name = preg_replace('/[^A-Za-z0-9\s]/', '', $fundraising_name);
+// Get the correct fundraising name from the GET request
+$fundraising_name = isset($_GET['fundraising_name']) ? trim($_GET['fundraising_name']) : "5 FUND DRIVE FOR SWS SHELTER RESCUES";
 
+// Normalize to match database format
+$fundraising_name = preg_replace('/[^A-Za-z0-9\s]/', '', $fundraising_name); // Remove special characters
+
+if ($fundraising_name === "Chucky") {
+    $fundraising_name = "FUNDRAISING FOR CHUCKY"; // Match database entry
+}
 
 // Log the fundraising name used
 error_log("Fetching donations for: " . $fundraising_name);
@@ -43,7 +49,7 @@ error_log("Fetched Data: " . json_encode($data));
 
 $totalRaised = $data['total_raised'] ?? 0;
 $donorCount = $data['donor_count'] ?? 0;
-$goalAmount = 10000;
+$goalAmount = ($fundraising_name === "FUNDRAISING FOR CHUCKY") ? 7000 : 10000; // Different goals for different fundraisers
 $progressPercentage = ($totalRaised / $goalAmount) * 100;
 $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 

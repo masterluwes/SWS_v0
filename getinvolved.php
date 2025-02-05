@@ -450,7 +450,7 @@
                 <div class="fund-card-content">
                     <h3 class="fund-card-title">Fundraising for Chucky!</h3>
                     <p class="fund-description">Chucky has a perineal hernia, severe skin issues, and ehrlichia and babesia. His support Chucky’s treatment and recovery. With your help, we can provide him the care he desperately needs. Thank you!</p>
-                    <a href="fundraising/fp-chucky.html" class="learn-more-btn">Learn more</a>
+                    <a href="fundraising/fp-chucky.php" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
