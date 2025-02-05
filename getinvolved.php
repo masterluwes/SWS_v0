@@ -442,7 +442,7 @@
                 <div class="fund-card-content">
                     <h3 class="fund-card-title">Help Ross!</h3>
                     <p class="fund-description">Ross, a pregnant dog run over by a vehicle, sustained a broken jaw and severe mouth injuries. After initial treatment at Vetlink, she was transferred to Deloso Vet Clinic for jaw repair and spay/abort surgery.</p>
-                    <a href="fundraising/fp-ross.html" class="learn-more-btn">Learn more</a>
+                    <a href="fundraising/fp-ross.php" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">

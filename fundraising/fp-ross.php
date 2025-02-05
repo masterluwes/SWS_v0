@@ -1,7 +1,7 @@
 <?php
 include '../admin/db.php';
 
-$fundraising_name = "HELP GHOST!";
+$fundraising_name = "HELP ROSS!";
 
 // Fetch total amount raised and donor count
 $query = "SELECT IFNULL(SUM(amount), 0) AS total_raised, COUNT(id) AS donor_count 
@@ -19,13 +19,13 @@ $result = $stmt->get_result();
 $data = $result->fetch_assoc();
 
 // Debugging: Print fetched values
-error_log("Total Raised: " . $data['total_raised']);
-error_log("Donor Count: " . $data['donor_count']);
+error_log("Total Raised for Ross: " . $data['total_raised']);
+error_log("Donor Count for Ross: " . $data['donor_count']);
 
 // Ensure default values
 $totalRaised = $data['total_raised'] ?? 0;
 $donorCount = $data['donor_count'] ?? 0;
-$goalAmount = 7500; // Goal for Ghost's fundraiser
+$goalAmount = 60000; // Goal for Ross' fundraiser
 $progressPercentage = ($totalRaised / $goalAmount) * 100;
 $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 ?>
@@ -37,7 +37,7 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="media2/logo1.png">
-    <title> SWS - Help Ghost! </title>
+    <title> SWS - Help Ross! </title>
     <link rel="stylesheet" href="fundraisingpage-styles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
 </head>
@@ -69,19 +69,19 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 
     <div class="main-column">
         <section class="fundraising-header">
-            <h2 class="fundraising-title"> HELP GHOST! </h2>
+            <h2 class="fundraising-title"> HELP ROSS! </h2>
         </section>
 
         <section class="fundraising-body">
             <div class="image-donation-cont">
                 <div class="images-container">
                     <div class="main-image">
-                        <img src="../media/fp-ghost5.jpg" class="main-image" />
+                        <img src="../media/fp-ross1.jpg" class="main-image" />
                     </div>
                     <div class="thumbnails">
-                        <img src="../media/fp-ghost1.jpg" />
-                        <img src="../media/fp-ghost3.jpg" />
-                        <img src="../media/fp-ghost4.jpg" />
+                        <img src="../media/fp-ross2.jpg" />
+                        <img src="../media/fp-ross3.jpg" />
+                        <img src="../media/fp-ross4.jpg" />
                     </div>
                 </div>
                 <div class="donation-container">
@@ -108,7 +108,7 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                     <h2>Donate to <span id="fundraising-title"></span></h2>
                     <br>
                     <form id="fundraising-donation-form" enctype="multipart/form-data">
-                        <input type="hidden" id="fundraising-name" name="fundraising-name" value="HELP GHOST!">
+                        <input type="hidden" id="fundraising-name" name="fundraising-name" value="HELP ROSS!">
 
 
                         <label for="first-name">First Name</label>
@@ -148,22 +148,44 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
             <div class="campaign-deets-section">
                 <section class="campaign-details">
                     <p class="campstory-label"> Campaign Story </p>
-                    <p class="about-label"> About Ghost </p>
+                    <p class="about-label"> About </p>
                     <p class="about-details">
-                        It was SWS lawyer, Atty. Mariline Marcelino Lee, who messaged SWS for help with this poor dog suffering from a severe case of TVT.
-                        The dog has an owner but is unable to afford vetting. The tumors are spread out already and immediate vetting is needed. <br> <br>
-                        SWS agreed to fundraise the vetting of Ghost and as of yesterday, this dog received his first chemo shot. He will be needing many more and your help is badly needed
-                        to allow us to afford his chemo and meds. <br> <br>
-                        To those with extra, please donate for Ghost. Please pray that the chemo will work and he will be back to his normal life. Thank you and God bless! <br> </p>
-                    <!--<p class="petnamestory-label"> 's Story </p>
-                    <p class="petname-story"> 
-                        <br> </p> -->
+                        Update from January 23, 2025 <br> <b>RUNNING BILL</b>: ALMOST ₱70,000 <br>
+                        <b>DONATIONS</b>: NOT EVEN 1/6 OF THE RUNNING BILL <br>
+                        <b>UPDATE ON ROSS</b>: Ross is the pregnant dog runover by a vehicle on her particularly on the mouth area. She sustained a broken jaw and a mouth that was virtually skinned.
+                        After bringing her to Vetlink for initial meds and tests, she was brought to Deloso Vet Clinic for jaw repair operation and spay/abort. <br> <br>
+                        Expert ortho vet immediately did the operation and on the same night, Ross was already eating. However, this is not yet finished.
+                        She needs another surgery, an axial flap operation, which refers to the taking of skin from another portion of the body to be placed on the skinned area of the mouth. <br> <br>
+                        Before this can be done, Ross had to first rest and be stable again. So after two weeks of rest and recovery from her first surgery, Ross is again returned to Desolo Vet clinic last night
+                        for the operation. It was a successful surgery and she was already eating a few hours after it. <br> <br>
+                        Ross is currently back to Vetlink for recovery and laser therapy on the surgical wounds. Please pray for the continuous healing of this fighter mama dog.
+                        She deserves to experience a better life. <br> <br>
+                        As for her bill, it has become so big already but donations do not not even reach 1/6 of the total running bill. The following are the expenses so far on Ross: <br>
+                        1st Deloso Vet Bill for 1st surgery - ₱26,425 <br>
+                        2nd Deloso Vet Bill for 2nd surgery - ₱20,295 <br>
+                        Vetlink Total running bill - ₱22,000 <br> <br>
+                        Unfortunately for SWS, funds are depleted and we are no longer able to afford the vet bills. Donations are in trickles and hardly cover allthe expenses.
+                        We badly need your help. Please support these rescues! Thank you and God bless! <br>
+                    </p>
+                    <p class="petnamestory-label"> Ross's Story </p>
+                    <p class="petname-story">
+                        This poor stray dog was just sleeping peacefully on the street when it was reportedly runover by a vehicle. As reported by Jonathan C. Yasis,
+                        the dog was just fine the night before the accident but the following morning, she is unable to eat because her mouth is badIy injured, with skin and flesh loose and flapping.
+                        She also has other wounds on the body. Worse, she is pregnant and soon to give birth. Hers is really a precarious condition so SWS immediately arranged her rescue after seeing the post. <br> <br>
+                        Rescuer Jun managed to find Ross and and bring her to Vetlink Vet Clinic. She was found negative for distemper. However, she is in so much pain.
+                        She won’t eat as it is her jaw that was injured. Her x-ray showed jaw fracture. As such, we need to transfer Ross to an ortho vet to handle the repair of the jaw. <br> <br>
+                        X-ray and ultrasound also confirmed Ross’ pregnancy. She has 5 puppies inside, all with heartbeat. However, there is no assurance they will survive if Ross will undergo a major surgery.
+                        The operation on her jaw is urgently necessary as she is in so much pain. <br> <br>
+                        The CBC and blood chem test results are as follows: “Cbc - granulocytosis observed and mild anemia, normal naman po ang platelet nia;
+                        Biochemistry - low albumin po possibly due to liver problem and hepatobiliary problem due to the increase of total bilirubin, ung ck (muscle enzymes) are also high due to the muscle trauma
+                        and the mandible fracture. <br> <br>
+                        Ross is now on IV fluids as she won’t eat. Please pray for her survival and that of her puppies. It is all in God’s hands now! Please pay for the survival of Ross and her puppies. <br> </p>
                     <p class="donation-details-label"> Donate Now! </p>
                     <p class="donation-details">
                         To those who want to donate, please send thru: <br> <br>
                         <b>GCash</b> <br>
-                        09129141555 (ME…E G.) <br>
-                        09706957555 (AR…N AN…Y C.) <br> <br>
+                        09176363824 (ME…E R.) <br>
+                        09051110018 (VL...R NI...L G.) <br> <br>
                         <b>Paymaya</b> & <a href="https://coins.ph/" style="text-decoration: none; color: #2B3467; font-weight: bold;"> Coins.ph </a> - 09176363824 <br>
                         <b>Paypal:</b> <a href="https://www.paypal.com/paypalme/straysworthsaving" style="text-decoration: underline; color: #2B3467; font-weight: bold;"> paypal.me/straysworthsaving </a>
                         or <a href="mailto:straysworthsaving@gmail.com" class="info-detail" style="text-decoration: none; color: #2B3467; font-weight: bold;">straysworthsaving@gmail.com</a> <br> <br>
@@ -181,22 +203,22 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                 <div class="campaign-section">
                     <h2 class="campaign-title">More Fundraising Campaigns</h2>
                     <div class="campaign-list">
+                        <a href="fp-chucky.html" style="text-decoration: none;">
+                            <div class="campaign-card">
+                                <img src="../media/fp-chucky2.jpg" class="campaign-image" />
+                                <h3 class="campaign-name">FUNDRAISING FOR CHUCKY!</h3>
+                            </div>
+                        </a>
+                        <a href="fp-ghost.html" style="text-decoration: none;">
+                            <div class="campaign-card">
+                                <img src="../media/fp-ghost6.jpg" class="campaign-image" />
+                                <h3 class="campaign-name">HELP GHOST!</h3>
+                            </div>
+                        </a>
                         <a href="fp-granny.html" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-img1.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">5PHP FUND DRIVE FOR GRANNY!</h3>
-                            </div>
-                        </a>
-                        <a href="fp-general.html" style="text-decoration: none;">
-                            <div class="campaign-card">
-                                <img src="../media/fp-general2.jpg" class="campaign-image" />
-                                <h3 class="campaign-name">FUNDRAISING FOR GENERAL</h3>
-                            </div>
-                        </a>
-                        <a href="fp-5forshelter.html" style="text-decoration: none;">
-                            <div class="campaign-card">
-                                <img src="../media/fp-img7.jpg" class="campaign-image" />
-                                <h3 class="campaign-name">₱5 FUND DRIVE FOR SWS SHELTER RESCUES!</h3>
                             </div>
                         </a>
                     </div>
@@ -232,7 +254,6 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
     </footer>
     <button id="back-to-top" title="Go to top">↑</button>
 </body>
-
 <script>
     const backToTopButton = document.getElementById("back-to-top");
 
@@ -363,9 +384,12 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        function fetchUpdatedDonations() {
-            fetch('../fundraising/fetch_fundraising_data.php?fundraising_name=HELP%20GHOST!&nocache=' + new Date().getTime(), {
+        document.addEventListener("DOMContentLoaded", function () {
+            function fetchUpdatedDonations() {
+                let fundraisingName = document.querySelector(".fundraising-title").textContent.trim();
+                let encodedName = encodeURIComponent(fundraisingName);
+
+                fetch(`../fundraising/fetch_fundraising_data.php?fundraising_name=${encodedName}&nocache=` + new Date().getTime(), {
                     cache: "no-store"
                 })
                 .then(response => response.json())
@@ -380,11 +404,11 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                     }
                 })
                 .catch(error => console.error("Error fetching donation data:", error));
-        }
+            }
 
-        fetchUpdatedDonations();
-        setInterval(fetchUpdatedDonations, 5000);
-    });
+            fetchUpdatedDonations();
+            setInterval(fetchUpdatedDonations, 5000);
+        });
     </script>
 
 </html>
