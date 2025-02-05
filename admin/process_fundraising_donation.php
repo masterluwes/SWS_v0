@@ -45,15 +45,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Define goal amounts per fundraiser
         $fundraising_goals = [
-            "FUNDRAISING FOR CHUCKY" => 7000,
+            "FUNDRAISING FOR CHUCKY!" => 7000,
             "FUNDRAISING FOR GENERAL" => 12000,
             "HELP GHOST!" => 7500,
-            "5 FUND DRIVE FOR SWS SHELTER RESCUES" => 10000
+            "5PHP FUND DRIVE FOR GRANNY!" => 10000, // ✅ Add Granny's fundraiser
+            "5 FUND DRIVE FOR SWS SHELTER RESCUES!" => 10000
         ];
 
         $goalAmount = $fundraising_goals[$fundraising_name] ?? 10000; // Default goal
         $progressPercentage = ($data['total_raised'] / $goalAmount) * 100;
         $progressPercentage = min($progressPercentage, 100); // Cap at 100%
+
 
         echo json_encode([
             "status" => "success",
@@ -65,4 +67,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(["status" => "error", "message" => "Failed to save donation"]);
     }
 }
-?>

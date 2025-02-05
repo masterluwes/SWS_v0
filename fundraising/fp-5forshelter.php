@@ -1,7 +1,7 @@
 <?php
 include '../admin/db.php';
 
-$fundraising_name = "5 FUND DRIVE FOR SWS SHELTER RESCUES";
+$fundraising_name = "5 FUND DRIVE FOR SWS SHELTER RESCUES!";
 
 // Fetch total amount raised and donor count
 $query = "SELECT IFNULL(SUM(amount), 0) AS total_raised, COUNT(id) AS donor_count 

@@ -384,7 +384,7 @@
                 <div class="fund-card-content">
                     <h3 class="fund-card-title">₱5 Fund drive for GRANNY!</h3>
                     <p class="fund-description">Granny, a senior stray dog, was reported for help by animal advocate Tiktak Jordan. Tragically, she was run over by a vehicle, leaving her with severe injuries, including both hips broken.</p>
-                    <a href="fundraising/fp-granny.html" class="learn-more-btn">Learn more</a>
+                    <a href="fundraising/fp-granny.php" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">

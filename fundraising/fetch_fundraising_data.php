@@ -11,7 +11,7 @@ if (!isset($_GET['fundraising_name'])) {
 }
 
 $fundraising_name = trim($_GET['fundraising_name']);
-$fundraising_name = preg_replace('/[^A-Za-z0-9\s!]/', '', $fundraising_name); // Allow special characters like "!"
+// $fundraising_name = preg_replace('/[^A-Za-z0-9\s!]/', '', $fundraising_name); // Allow special characters like "!"
 
 // Log the fundraising name used
 error_log("Fetching donations for: " . $fundraising_name);
@@ -39,15 +39,17 @@ $donorCount = $data['donor_count'] ?? 0;
 
 // Define goal amounts per fundraiser
 $fundraising_goals = [
-    "FUNDRAISING FOR CHUCKY" => 7000,
+    "FUNDRAISING FOR CHUCKY!" => 7000,
     "FUNDRAISING FOR GENERAL" => 12000,
     "HELP GHOST!" => 7500,
-    "5 FUND DRIVE FOR SWS SHELTER RESCUES" => 10000
+    "5PHP FUND DRIVE FOR GRANNY!" => 10000, // ✅ Add Granny's fundraiser
+    "5 FUND DRIVE FOR SWS SHELTER RESCUES!" => 10000
 ];
 
 $goalAmount = $fundraising_goals[$fundraising_name] ?? 10000; // Default goal
 $progressPercentage = ($totalRaised / $goalAmount) * 100;
 $progressPercentage = min($progressPercentage, 100); // Cap at 100%
+
 
 // Return JSON response
 echo json_encode([
