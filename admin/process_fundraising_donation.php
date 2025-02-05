@@ -49,7 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "FUNDRAISING FOR GENERAL" => 12000,
             "HELP GHOST!" => 7500,
             "5PHP FUND DRIVE FOR GRANNY!" => 10000, // ✅ Add Granny's fundraiser
-            "5 FUND DRIVE FOR SWS SHELTER RESCUES!" => 10000
+            "5 FUND DRIVE FOR SWS SHELTER RESCUES!" => 10000,
+            "JUSTICE FOR HOLLY" => 10000
         ];
 
         $goalAmount = $fundraising_goals[$fundraising_name] ?? 10000; // Default goal

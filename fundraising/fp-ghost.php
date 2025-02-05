@@ -387,4 +387,32 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
     });
     </script>
 
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function fetchUpdatedDonations() {
+                let fundraisingName = document.querySelector(".fundraising-title").textContent.trim();
+                let encodedName = encodeURIComponent(fundraisingName);
+
+                fetch(`../fundraising/fetch_fundraising_data.php?fundraising_name=${encodedName}&nocache=` + new Date().getTime(), {
+                    cache: "no-store"
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Fetched Data:", data);
+                    if (data.totalRaised !== undefined) {
+                        document.querySelector(".donation-asof").textContent = `₱ ${parseFloat(data.totalRaised).toLocaleString()}`;
+                        document.querySelector(".donor-count").textContent = `${data.donorCount} donors`;
+                        document.querySelector(".progress").style.width = `${data.progressPercentage}%`;
+                    } else {
+                        console.error("Invalid data format", data);
+                    }
+                })
+                .catch(error => console.error("Error fetching donation data:", error));
+            }
+
+            fetchUpdatedDonations();
+            setInterval(fetchUpdatedDonations, 5000);
+        });
+    </script>
+
 </html>

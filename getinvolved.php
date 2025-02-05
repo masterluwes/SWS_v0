@@ -434,7 +434,7 @@
                     <h3 class="fund-card-title">Justice for Holly</h3>
                     <p class="fund-description">
                         This poor cat, cruelly thrown and hit by a rock, remains in intensive care. While her condition has improved, she still has head tilting and shallow breathing. Please keep her in your prayers. </p>
-                    <a href="fundraising/fp-holly.html" class="learn-more-btn">Learn more</a>
+                    <a href="fundraising/fp-holly.php" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
