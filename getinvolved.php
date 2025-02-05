@@ -212,21 +212,21 @@
                 <div class="wish-list">
                     <h3>RESCUE ANIMALS WISH LIST</h3>
                     <ul>
-                        <li>1.</li>
-                        <li>2.</li>
-                        <li>3.</li>
-                        <li>4.</li>
-                        <li>5.</li>
+                        <li>🐾 Dog food (kibble and canned)</li>
+                        <li>🐾 Shampoo and Pee pads</li>
+                        <li>🐾 Brushes and Toys</li>
+                        <li>🐾 Medicine and Vitamins</li>
+                        <li>🐾 Leashes, harness, and collars</li>
                     </ul>
                 </div>
                 <div class="wish-list">
                     <h3>RESCUE ANIMALS WISH LIST</h3>
                     <ul>
-                        <li>1.</li>
-                        <li>2.</li>
-                        <li>3.</li>
-                        <li>4.</li>
-                        <li>5.</li>
+                        <li>🐾 Mops and Brooms</li>
+                        <li>🐾 Garbage Bags</li>
+                        <li>🐾 Bath Towels</li>
+                        <li>🐾 Detergent powder and bleach</li>
+                        <li>🐾 Dishwashing Soap</li>
                     </ul>
                 </div>
             </div>
@@ -384,7 +384,7 @@
                 <div class="fund-card-content">
                     <h3 class="fund-card-title">₱5 Fund drive for GRANNY!</h3>
                     <p class="fund-description">Granny, a senior stray dog, was reported for help by animal advocate Tiktak Jordan. Tragically, she was run over by a vehicle, leaving her with severe injuries, including both hips broken.</p>
-                    <button class="learn-more-btn">Learn more</button>
+                    <a href="fundraising/fp-granny.html" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
@@ -392,55 +392,73 @@
                 <div class="fund-card-content">
                     <h3 class="fund-card-title">Fundraising for the surgery of GENERAL!</h3>
                     <p class="fund-description">General is currently on meds to stabilize his body before he gets his much needed surgery — scrotaI abIation. Due to lack of funds, we badly need your support.<br><br></p>
-                    <button class="learn-more-btn">Learn more</button>
+                    <a href="fundraising/fp-general.html" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
-                <img src="" class="fundraising-image">
+                <img src="media/fp-img7.jpg" class="fundraising-image">
                 <div class="fund-card-content">
-                    <h3 class="fund-card-title">Fundraising Name</h3>
-                    <p class="fund-description">Lorem ipsum dolor sit amet. Ea facilis iusto id reiciendis earum et.</p>
-                    <button class="learn-more-btn">Learn more</button>
+                    <h3 class="fund-card-title">₱5 Fund Drive for SWS Shelter Rescues</h3>
+                    <p class="fund-description">
+                        SWS appeals for your help to provide food and care for 300 rescues at our Batangas shelter. These strays endured pain, illness, and abandonment. Your Php5 donation can make a difference in their lives.</p>
+                    <a href="fundraising/fp-5forshelter.php" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
-                <img src="" class="fundraising-image">
+                <img src="media/fp-marina1.jpg" class="fundraising-image">
                 <div class="fund-card-content">
-                    <h3 class="fund-card-title">Fundraising Name</h3>
-                    <p class="fund-description">Lorem ipsum dolor sit amet. Ea facilis iusto id reiciendis earum et.</p>
-                    <button class="learn-more-btn">Learn more</button>
+                    <h3 class="fund-card-title">Fundraising for Marina</h3>
+                    <p class="fund-description">Marina was found by Rescuer Jun, weak and in pain with severe injuries. She was treated for wounds, fractures, infection, and anemia at the Vetlink Clinic. Her recovery will be long and costly. Please support Marina’s fight and help us continue saving lives. Thank you.</p>
+                    <a href="fundraising/fp-marina.html" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
-                <img src="" class="fundraising-image">
+                <img src="media/fp-sia1.jpg" class="fundraising-image">
                 <div class="fund-card-content">
-                    <h3 class="fund-card-title">Fundraising Name</h3>
-                    <p class="fund-description">Lorem ipsum dolor sit amet. Ea facilis iusto id reiciendis earum et.</p>
-                    <button class="learn-more-btn">Learn more</button>
+                    <h3 class="fund-card-title">Fundraising for Sia, the Cat</h3>
+                    <p class="fund-description">Sia is considered to be in critical condition and is now on intensive care and meds. She is nebulized regularly and on syringe feeding. Please pray for her survival. </p>
+                    <a href="fundraising/fp-sia.html" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
-                <img src="" class="fundraising-image">
+                <img src="media/fp-jade3.jpg" class="fundraising-image">
                 <div class="fund-card-content">
-                    <h3 class="fund-card-title">Fundraising Name</h3>
-                    <p class="fund-description">Lorem ipsum dolor sit amet. Ea facilis iusto id reiciendis earum et.</p>
-                    <button class="learn-more-btn">Learn more</button>
+                    <h3 class="fund-card-title">Fundraising for Jade</h3>
+                    <p class="fund-description">We are fundraising ₱7,000 for Jade, a stray dog found helpless and in pain at a gas station on Molino Blvd. She was reportedly run over by a vehicle while asleep and urgently needs rescue and initial vet care. Please help Jade recover!</p>
+                    <a href="fundraising/fp-jade.html" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
-                <img src="" class="fundraising-image">
+                <img src="media/fp-holly1.jpg" class="fundraising-image">
                 <div class="fund-card-content">
-                    <h3 class="fund-card-title">Fundraising Name</h3>
-                    <p class="fund-description">Lorem ipsum dolor sit amet. Ea facilis iusto id reiciendis earum et.</p>
-                    <button class="learn-more-btn">Learn more</button>
+                    <h3 class="fund-card-title">Justice for Holly</h3>
+                    <p class="fund-description">
+                        This poor cat, cruelly thrown and hit by a rock, remains in intensive care. While her condition has improved, she still has head tilting and shallow breathing. Please keep her in your prayers. </p>
+                    <a href="fundraising/fp-holly.html" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
             <div class="fundraising-card">
-                <img src="" class="fundraising-image">
+                <img src="media/fp-ross1.jpg" class="fundraising-image">
                 <div class="fund-card-content">
-                    <h3 class="fund-card-title">Fundraising Name</h3>
-                    <p class="fund-description">Lorem ipsum dolor sit amet. Ea facilis iusto id reiciendis earum et.</p>
-                    <button class="learn-more-btn">Learn more</button>
+                    <h3 class="fund-card-title">Help Ross!</h3>
+                    <p class="fund-description">Ross, a pregnant dog run over by a vehicle, sustained a broken jaw and severe mouth injuries. After initial treatment at Vetlink, she was transferred to Deloso Vet Clinic for jaw repair and spay/abort surgery.</p>
+                    <a href="fundraising/fp-ross.html" class="learn-more-btn">Learn more</a>
+                </div>
+            </div>
+            <div class="fundraising-card">
+                <img src="media/fp-chucky2.jpg" class="fundraising-image">
+                <div class="fund-card-content">
+                    <h3 class="fund-card-title">Fundraising for Chucky!</h3>
+                    <p class="fund-description">Chucky has a perineal hernia, severe skin issues, and ehrlichia and babesia. His support Chucky’s treatment and recovery. With your help, we can provide him the care he desperately needs. Thank you!</p>
+                    <a href="fundraising/fp-chucky.html" class="learn-more-btn">Learn more</a>
+                </div>
+            </div>
+            <div class="fundraising-card">
+                <img src="media/fp-ghost6.jpg" class="fundraising-image">
+                <div class="fund-card-content">
+                    <h3 class="fund-card-title">Help Ghost!</h3>
+                    <p class="fund-description">Ghost, a dog with severe TVT, needs urgent chemo. His owner can't afford treatment, so SWS is fundraising. He’s had his first shot but needs more. Please help us support his recovery!</p>
+                    <a href="fundraising/fp-ghost.html" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
         </div>

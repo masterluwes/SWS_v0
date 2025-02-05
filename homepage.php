@@ -30,7 +30,7 @@ $conn->close();
         </div>
         <div class="header-container">
             <div class="logo">
-                <img src="logo1.png" alt="Strays Worth Saving Logo">
+                <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
             </div>
             <nav>
                 <ul class="navbar">

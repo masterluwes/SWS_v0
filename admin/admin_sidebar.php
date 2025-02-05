@@ -59,15 +59,15 @@
         </div>
     </li>
 
-     <!-- Divider
-    <hr class="sidebar-divider"> -->
+     <!-- Divider -->
+    <hr class="sidebar-divider">
 
-    <!-- Nav Item - Fundraising and Donations 
+    <!-- Nav Item - Donations  -->
     <li class="nav-item">
-        <a class="nav-link" href="donation_fundraising.php">
+        <a class="nav-link" href="admin_fundraising.php">
             <i class="fas fa-fw fa-hand-holding-usd"></i>
-            <span>Donation and Fundraising</span></a>
-    </li> -->
+            <span>Fundraising</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
