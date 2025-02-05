@@ -277,7 +277,7 @@ $total_users = $user_count_data['total_users'];
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-5">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase">Users</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_users; ?></div> 
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_users; ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fa fa-user fa-2x text-gray-300" aria-hidden="true"></i>
@@ -317,7 +317,7 @@ $total_users = $user_count_data['total_users'];
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        <?php echo $adoption_rate; ?>% 
+                                                        <?php echo $adoption_rate; ?>%
                                                     </div>
                                                 </div>
                                                 <div class="col">
@@ -460,60 +460,66 @@ $total_users = $user_count_data['total_users'];
         <!-- Custom scripts for all pages-->
         <script src="js/sb-admin-2.min.js"></script>
 
+        <!-- For the donation chart -->
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                let ctx = document.getElementById("myChart").getContext("2d");
+                fetch("fetch_donations.php")
+                    .then(response => response.json())
+                    .then(data => {
+                        let ctx = document.getElementById("myChart").getContext("2d");
 
-                let myChart = new Chart(ctx, {
-                    type: "line",
-                    data: {
-                        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                        datasets: [{
-                                label: "Work Load",
-                                data: [2, 9, 3, 17, 6, 3, 7],
-                                backgroundColor: "rgba(153, 205, 1, 0.2)", // Light green fill
-                                borderColor: "rgba(153, 205, 1, 1)", // Darker green line
-                                borderWidth: 2
+                        let labels = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                        let donationAmounts = labels.map(day => data[day] || 0); // Ensure order matches labels
+
+                        let myChart = new Chart(ctx, {
+                            type: "line",
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: "Total Donations (₱)",
+                                    data: donationAmounts,
+                                    backgroundColor: "rgba(78, 115, 223, 0.2)", // Light blue fill
+                                    borderColor: "rgba(78, 115, 223, 1)", // Darker blue line
+                                    borderWidth: 2
+                                }]
                             },
-                            {
-                                label: "Free Hours",
-                                data: [2, 2, 5, 5, 2, 1, 10],
-                                backgroundColor: "rgba(255, 193, 7, 0.2)", // Light yellow fill
-                                borderColor: "rgba(255, 193, 7, 1)", // Dark yellow line
-                                borderWidth: 2
-                            }
-                        ]
-                    },
-                    options: {
-                        maintainAspectRatio: false, // Allow proper scaling
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                labels: {
-                                    font: {
-                                        size: 14
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        labels: {
+                                            font: {
+                                                size: 14
+                                            }
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        grid: {
+                                            display: false
+                                        }
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                        ticks: {
+                                            stepSize: 50 // Y-axis increments by 50
+                                        },
+                                        grid: {
+                                            color: "rgba(200, 200, 200, 0.2)"
+                                        }
                                     }
                                 }
                             }
-                        },
-                        scales: {
-                            x: {
-                                grid: {
-                                    display: false // Hide x-axis grid lines
-                                }
-                            },
-                            y: {
-                                beginAtZero: true,
-                                grid: {
-                                    color: "rgba(200, 200, 200, 0.2)" // Light gray grid lines
-                                }
-                            }
-                        }
-                    }
-                });
+                        });
+                    })
+                    .catch(error => console.error("Error fetching donation data:", error));
             });
         </script>
 
+
+        <!-- For the Pie Chart -->
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 // Get the canvas for the pie chart
