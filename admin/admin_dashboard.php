@@ -416,7 +416,7 @@ $total_users = $user_count_data['total_users'];
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2025</span>
+                        <span>&copy; Strays Worth Saving 2025</span>
                     </div>
                 </div>
             </footer>
@@ -476,7 +476,7 @@ $total_users = $user_count_data['total_users'];
                             data: {
                                 labels: labels,
                                 datasets: [{
-                                    label: "Total Donations (₱)",
+                                    label: "Donations for this week (₱)",
                                     data: donationAmounts,
                                     backgroundColor: "rgba(78, 115, 223, 0.2)", // Light blue fill
                                     borderColor: "rgba(78, 115, 223, 1)", // Darker blue line

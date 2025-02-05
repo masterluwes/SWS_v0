@@ -321,7 +321,7 @@ $conn->close();
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>&copy; Your Website 2025</span>
+                        <span>&copy; Strays Worth Saving 2025</span>
                     </div>
                 </div>
             </footer>
