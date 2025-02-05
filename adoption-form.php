@@ -31,7 +31,8 @@ if (!isset($_SESSION['form_errors'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strays Worth Saving</title>
+    <link rel="icon" type="image/x-icon" href="logo1.png">
+    <title>Adopt a Pet from Strays Worth Saving</title>
     <link rel="stylesheet" href="swsstyles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
@@ -51,7 +52,9 @@ if (!isset($_SESSION['form_errors'])) {
         </div>
         <div class="header-container">
             <div class="logo">
-                <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                <a href="homepage.php">
+                    <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                </a>
             </div>
             <nav>
                 <ul class="navbar">

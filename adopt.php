@@ -27,10 +27,12 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strays Worth Saving</title>
+    <link rel="icon" type="image/x-icon" href="logo1.png">
+    <title>Adoption • Strays Worth Saving</title>
     <link rel="stylesheet" href="swsstyles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
 
@@ -45,9 +47,10 @@ $conn->close();
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
         }
+
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
@@ -55,12 +58,14 @@ $conn->close();
             border: 1px solid #888;
             width: 80%;
         }
+
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
+
         .close:hover,
         .close:focus {
             color: black;
@@ -69,6 +74,7 @@ $conn->close();
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="header-btns">
@@ -79,7 +85,9 @@ $conn->close();
         </div>
         <div class="header-container">
             <div class="logo">
-                <img src="logo1.png" alt="Strays Worth Saving Logo">
+                <a href="homepage.php">
+                    <img src="logo1.png" alt="Strays Worth Saving Logo">
+                </a>
             </div>
             <nav>
                 <ul class="navbar">
@@ -166,12 +174,12 @@ $conn->close();
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         // Fetch animals on page load
         $.ajax({
             url: 'fetch_animals.php', // PHP file to fetch animal data
             type: 'GET',
-            success: function (response) {
+            success: function(response) {
                 console.log(response); // Debugging: Check if the response is correct
                 const animals = JSON.parse(response); // Parse the JSON response
 
@@ -225,7 +233,7 @@ $conn->close();
                 // Append the generated HTML to the animals grid
                 $('#animals-grid').html(animalsHtml);
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.error('Error:', error); // Debugging: Check if there is an error
                 alert('Failed to fetch animals.');
             }
@@ -235,16 +243,19 @@ $conn->close();
 
     const backToTopButton = document.getElementById("back-to-top");
 
-    window.onscroll = function () {
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        backToTopButton.style.display = "block";
-      } else {
-        backToTopButton.style.display = "none";
-      }
+    window.onscroll = function() {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
     };
-  
-    backToTopButton.onclick = function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+
+    backToTopButton.onclick = function() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     };
 
     function openModal(id) {
@@ -255,7 +266,7 @@ $conn->close();
         document.getElementById(`${id}-modal`).style.display = "none";
     }
 
-    window.onclick = function (event) {
+    window.onclick = function(event) {
         const modals = document.querySelectorAll(".modal");
         modals.forEach((modal) => {
             if (event.target == modal) {
@@ -264,4 +275,5 @@ $conn->close();
         });
     };
 </script>
+
 </html>

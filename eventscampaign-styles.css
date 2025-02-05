@@ -270,33 +270,48 @@ header {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px; 
+    gap: 8px;
     padding: 10px 20px;
-    background-color: transparent; 
-    color: #000000; 
+    background-color: #ffcc00;
+    color: #333;
     border: 2px solid #000000;
     border-radius: 5px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 25px; 
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    margin-top: 25px;
     width: 100%;
 }
 
+/* Hover effect */
 .readmore-btn:hover {
-    background-color: #2B3467; 
+    background-color: #2B3467;
     color: #F8F8FF;
-    transition: background-color 0.5s ease;
 }
 
+/* Click (active) effect */
 .readmore-btn:active {
-    background-color: #1a1f3d; 
-    color: #F6F3E6; 
-    border-color: #1a1f3d; 
+    transform: scale(0.95);
 }
 
-.readmore-btn i {
-    font-size: 18px; 
+/* Keep button highlighted when clicked */
+.readmore-btn.clicked {
+    background-color: #ff9900; /* New color after click */
+    color: #fff;
+    border-color: #ff9900;
+}
+
+/* Stay Changed When Clicked */
+.readmore-btn.clicked {
+    background-color: #ff9900; /* Orange when clicked */
+    color: #fff;
+    border-color: #ff9900;
+}
+
+/* Keep Icon White When Clicked */
+.readmore-btn.clicked i {
+    color: #fff;
 }
 
 .star-btn {

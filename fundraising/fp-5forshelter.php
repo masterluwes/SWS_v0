@@ -40,7 +40,7 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../media2/logo1.png">
-    <title> SWS - ₱5 Fund Drive for SWS Shelter Rescues! </title>
+    <title> SWS: ₱5 Fund Drive for SWS Shelter Rescues! </title>
     <link rel="stylesheet" href="fundraisingpage-styles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
 </head>
@@ -55,7 +55,9 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
         </div>
         <div class="header-container">
             <div class="logo">
-                <img src="../media2/logo1.png" alt="Strays Worth Saving Logo">
+                <a href="../homepage.php">
+                    <img src="../media2/logo1.png" alt="Strays Worth Saving Logo">
+                </a>
             </div>
             <nav>
                 <ul class="navbar">
@@ -200,19 +202,19 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                 <div class="campaign-section">
                     <h2 class="campaign-title">More Fundraising Campaigns</h2>
                     <div class="campaign-list">
-                        <a href="fp-marina.html" style="text-decoration: none;">
+                        <a href="fp-marina.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-marina1.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">FUNDRAISING FOR MARINA</h3>
                             </div>
                         </a>
-                        <a href="fp-sia.html" style="text-decoration: none;">
+                        <a href="fp-sia.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-sia1.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">FUNDRAISING FOR SIA, THE CAT</h3>
                             </div>
                         </a>
-                        <a href="fp-jade.html" style="text-decoration: none;">
+                        <a href="fp-jade.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-jade3.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">FUNDRAISING FOR JADE</h3>

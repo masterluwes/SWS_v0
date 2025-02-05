@@ -49,36 +49,38 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="logo1.png">
-    <title> SWS - Success Stories</title>
+    <title>Success Stories • Strays Worth Saving</title>
     <link rel="stylesheet" href="sucessstories-styles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
     <style>
-    .toggle-button {
-        display: block;
-        margin: 20px auto;
-        padding: 10px 20px;
-        font-size: 16px;
-        color: white;
-        background-color: #2B3467;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+        .toggle-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #2B3467;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-    .toggle-button:hover {
-        background-color: #0056b3;
-    }
+        .toggle-button:hover {
+            background-color: #0056b3;
+        }
 
-    .toggle-button:active {
-        background-color: #2B3467;
-    }
+        .toggle-button:active {
+            background-color: #2B3467;
+        }
     </style>
 </head>
+
 <body>
     <header>
         <div class="header-btns">
@@ -89,7 +91,9 @@ $conn->close();
         </div>
         <div class="header-container">
             <div class="logo">
-                <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                <a href="homepage.php">
+                    <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                </a>
             </div>
             <nav>
                 <ul class="navbar">
@@ -125,7 +129,7 @@ $conn->close();
                                 <h3><?= htmlspecialchars($story['title']) ?></h3>
                                 <p class="content preserve-format"><?= nl2br(htmlspecialchars($story['content'])) ?></p>
                             </div>
-                            <img src="admin/uploads/<?= htmlspecialchars($story['image']) ?>" alt="Adoption Highlight" class="article-image"/>
+                            <img src="admin/uploads/<?= htmlspecialchars($story['image']) ?>" alt="Adoption Highlight" class="article-image" />
                         </a>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -147,7 +151,7 @@ $conn->close();
                                     <h3><?= htmlspecialchars($story['title']) ?></h3>
                                     <p class="content preserve-format"><?= nl2br(htmlspecialchars($story['content'])) ?></p>
                                 </div>
-                                <img src="admin/uploads/<?= htmlspecialchars($story['image']) ?>" alt="Adoption Highlight" class="article-image"/>
+                                <img src="admin/uploads/<?= htmlspecialchars($story['image']) ?>" alt="Adoption Highlight" class="article-image" />
                             </a>
                         <?php endforeach; ?>
                     </div>
@@ -173,7 +177,7 @@ $conn->close();
                                             <h3><?= htmlspecialchars($story['title']) ?></h3>
                                             <p class="content preserve-format"><?= nl2br(htmlspecialchars($story['content'])) ?></p>
                                         </div>
-                                        <img src="admin/uploads/<?= htmlspecialchars($story['image']) ?>" alt="Adoption Highlight" class="article-image"/>
+                                        <img src="admin/uploads/<?= htmlspecialchars($story['image']) ?>" alt="Adoption Highlight" class="article-image" />
                                     </a>
                                 <?php endforeach; ?>
                             </div>
@@ -199,4 +203,5 @@ $conn->close();
         });
     });
 </script>
+
 </html>

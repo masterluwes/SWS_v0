@@ -13,13 +13,16 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="logo1.png">
     <title>Strays Worth Saving</title>
     <link rel="stylesheet" href="swsstyles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header>
         <div class="header-btns">
@@ -30,7 +33,9 @@ $conn->close();
         </div>
         <div class="header-container">
             <div class="logo">
-                <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                <a href="homepage.php">
+                    <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                </a>
             </div>
             <nav>
                 <ul class="navbar">
@@ -55,13 +60,13 @@ $conn->close();
         <section class="nav-section">
             <div class="nav-container">
                 <?php foreach ($content['nav_section'] as $navItem): ?>
-                <a href="<?php echo htmlspecialchars($navItem['url']); ?>" class="nav-link">
-                    <div class="nav-item">
-                        <img src="<?php echo htmlspecialchars($navItem['image_path']); ?>" alt="<?php echo htmlspecialchars($navItem['title']); ?>" class="nav-icon"/>
-                        <h3><?php echo htmlspecialchars($navItem['title']); ?></h3>
-                        <p><?php echo htmlspecialchars($navItem['content']); ?></p>
-                    </div>
-                </a>
+                    <a href="<?php echo htmlspecialchars($navItem['url']); ?>" class="nav-link">
+                        <div class="nav-item">
+                            <img src="<?php echo htmlspecialchars($navItem['image_path']); ?>" alt="<?php echo htmlspecialchars($navItem['title']); ?>" class="nav-icon" />
+                            <h3><?php echo htmlspecialchars($navItem['title']); ?></h3>
+                            <p><?php echo htmlspecialchars($navItem['content']); ?></p>
+                        </div>
+                    </a>
                 <?php endforeach; ?>
             </div>
         </section>
@@ -69,13 +74,13 @@ $conn->close();
         <section class="highlights-section">
             <div class="article-grid">
                 <?php foreach ($content['highlights'] as $highlight): ?>
-                <a href="<?php echo htmlspecialchars($highlight['url']); ?>" class="article-card">
-                    <img src="<?php echo htmlspecialchars($highlight['image_path']); ?>" alt="<?php echo htmlspecialchars($highlight['title']); ?>" class="article-image"/>
-                    <div class="article-content">
-                        <h3><?php echo htmlspecialchars($highlight['title']); ?></h3>
-                        <p><?php echo htmlspecialchars($highlight['content']); ?></p>
-                    </div>
-                </a>
+                    <a href="<?php echo htmlspecialchars($highlight['url']); ?>" class="article-card">
+                        <img src="<?php echo htmlspecialchars($highlight['image_path']); ?>" alt="<?php echo htmlspecialchars($highlight['title']); ?>" class="article-image" />
+                        <div class="article-content">
+                            <h3><?php echo htmlspecialchars($highlight['title']); ?></h3>
+                            <p><?php echo htmlspecialchars($highlight['content']); ?></p>
+                        </div>
+                    </a>
                 <?php endforeach; ?>
             </div>
         </section>
@@ -126,7 +131,7 @@ $conn->close();
     <script>
         const backToTopButton = document.getElementById("back-to-top");
 
-        window.onscroll = function () {
+        window.onscroll = function() {
             if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 backToTopButton.style.display = "block";
             } else {
@@ -134,9 +139,13 @@ $conn->close();
             }
         };
 
-        backToTopButton.onclick = function () {
-            window.scrollTo({ top: 0, behavior: "smooth" });
+        backToTopButton.onclick = function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         };
     </script>
 </body>
+
 </html>

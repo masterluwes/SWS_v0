@@ -30,14 +30,16 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="logo1.png">
-    <title>SWS - Events and Campaign</title>
+    <title>Events and Campaign • Strays Worth Saving</title>
     <link rel="stylesheet" href="eventscampaign-styles.css">
-    <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script> 
+    <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header>
         <div class="header-btns">
@@ -48,7 +50,9 @@ $conn->close();
         </div>
         <div class="header-container">
             <div class="logo">
-                <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                <a href="homepage.php">
+                    <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                </a>
             </div>
             <nav>
                 <ul class="navbar">
@@ -78,22 +82,24 @@ $conn->close();
                     <?php foreach ($archived_events as $event): ?>
                         <div class="eventcamp-card">
                             <div class="eventcamp-content">
-                                <img src="admin/uploads/<?= htmlspecialchars($event['image_path']) ?>" alt="<?= htmlspecialchars($event['title']) ?>" class="eventcamp-image"/>
-                                <a href=""> <h2><?= htmlspecialchars($event['title']) ?></h2> </a>
+                                <img src="admin/uploads/<?= htmlspecialchars($event['image_path']) ?>" alt="<?= htmlspecialchars($event['title']) ?>" class="eventcamp-image" />
+                                <a href="">
+                                    <h2><?= htmlspecialchars($event['title']) ?></h2>
+                                </a>
                                 <p><?= nl2br(htmlspecialchars($event['description'])) ?></p> <br>
                                 <div class="detail-container">
-                                    <img src="media/calendar-icon.png" alt="Date" class="smolicons-image"/>
+                                    <img src="media/calendar-icon.png" alt="Date" class="smolicons-image" />
                                     <p class="date-details"><?= htmlspecialchars(date('d F Y', strtotime($event['date']))) ?> (<?= htmlspecialchars(date('h:i A', strtotime($event['start_time']))) ?> - <?= htmlspecialchars(date('h:i A', strtotime($event['end_time']))) ?>)</p>
                                 </div>
                                 <div class="detail-container">
-                                    <img src="media/pin-icon.png" alt="Location" class="smolicons-image"/>
+                                    <img src="media/pin-icon.png" alt="Location" class="smolicons-image" />
                                     <p class="location-details"><?= htmlspecialchars($event['location']) ?></p>
                                 </div>
                                 <div class="detail-container">
-                                    <img src="media/participants-icon.png" alt="Participants" class="smolicons-image"/>
+                                    <img src="media/participants-icon.png" alt="Participants" class="smolicons-image" />
                                     <p class="participants-details"><?= htmlspecialchars($event['participants']) ?>+ participants interested</p>
                                 </div>
-                                <button class="readmore-btn"> <i class="fa-solid fa-star"></i> Read More</button>
+                                <button class="readmore-btn"> <i class="fa-solid fa-star"></i> Interested</button>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -109,22 +115,27 @@ $conn->close();
                     <?php foreach ($active_events as $event): ?>
                         <div class="eventcamp-card">
                             <div class="eventcamp-content">
-                                <img src="admin/uploads/<?= htmlspecialchars($event['image_path']) ?>" alt="<?= htmlspecialchars($event['title']) ?>" class="eventcamp-image"/>
-                                <a href=""> <h2><?= htmlspecialchars($event['title']) ?></h2> </a>
+                                <img src="admin/uploads/<?= htmlspecialchars($event['image_path']) ?>" alt="<?= htmlspecialchars($event['title']) ?>" class="eventcamp-image" />
+                                <a href="">
+                                    <h2><?= htmlspecialchars($event['title']) ?></h2>
+                                </a>
                                 <p><?= nl2br(htmlspecialchars($event['description'])) ?></p> <br>
                                 <div class="detail-container">
-                                    <img src="media/calendar-icon.png" alt="Date" class="smolicons-image"/>
+                                    <img src="media/calendar-icon.png" alt="Date" class="smolicons-image" />
                                     <p class="date-details"><?= htmlspecialchars(date('d F Y', strtotime($event['date']))) ?> (<?= htmlspecialchars(date('h:i A', strtotime($event['start_time']))) ?> - <?= htmlspecialchars(date('h:i A', strtotime($event['end_time']))) ?>)</p>
                                 </div>
                                 <div class="detail-container">
-                                    <img src="media/pin-icon.png" alt="Location" class="smolicons-image"/>
+                                    <img src="media/pin-icon.png" alt="Location" class="smolicons-image" />
                                     <p class="location-details"><?= htmlspecialchars($event['location']) ?></p>
                                 </div>
                                 <div class="detail-container">
-                                    <img src="media/participants-icon.png" alt="Participants" class="smolicons-image"/>
+                                    <img src="media/participants-icon.png" alt="Participants" class="smolicons-image" />
                                     <p class="participants-details"><?= htmlspecialchars($event['participants']) ?>+ participants interested</p>
                                 </div>
-                                <button class="readmore-btn"> <i class="fa-solid fa-star"></i> Read More</button>
+                                <button class="readmore-btn" data-event-id="<?= htmlspecialchars($event['id']) ?>">
+                                    <i class="fa-solid fa-star"></i> Interested
+                                </button>
+
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -159,20 +170,53 @@ $conn->close();
         </div>
     </footer>
     <button id="back-to-top" title="Go to top">↑</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const buttons = document.querySelectorAll(".readmore-btn");
+
+            buttons.forEach(button => {
+                let eventId = button.dataset.eventId;
+
+                if (!eventId) return; // Ensure eventId exists before proceeding
+
+                // Check localStorage for previously clicked buttons
+                if (localStorage.getItem("interested-" + eventId) === "true") {
+                    button.classList.add("clicked");
+                }
+
+                button.addEventListener("click", function() {
+                    if (this.classList.contains("clicked")) {
+                        this.classList.remove("clicked");
+                        localStorage.removeItem("interested-" + eventId);
+                    } else {
+                        this.classList.add("clicked");
+                        localStorage.setItem("interested-" + eventId, "true");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 <script>
     const backToTopButton = document.getElementById("back-to-top");
 
-    window.onscroll = function () {
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        backToTopButton.style.display = "block";
-      } else {
-        backToTopButton.style.display = "none";
-      }
+    window.onscroll = function() {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
     };
-  
-    backToTopButton.onclick = function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+
+    backToTopButton.onclick = function() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     };
 </script>
+
+
+
 </html>

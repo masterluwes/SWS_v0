@@ -522,40 +522,45 @@ $total_users = $user_count_data['total_users'];
         <!-- For the Pie Chart -->
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                // Get the canvas for the pie chart
-                let pieCtx = document.getElementById("pie-chart").getContext("2d");
+                fetch("../admin/fetch_dashboard_data.php")
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Fetched Data:", data); // Debugging output
 
-                // Create the Pie Chart
-                let pieChart = new Chart(pieCtx, {
-                    type: "pie",
-                    data: {
-                        labels: ["Adopt", "Donate", "Fundraising"],
-                        datasets: [{
-                            data: [35, 25, 40], // Sample data (replace with real data)
-                            backgroundColor: [
-                                "rgba(78, 115, 223, 0.7)", // Blue
-                                "rgba(28, 200, 138, 0.7)", // Green
-                                "rgba(246, 194, 62, 0.7)" // Yellow
-                            ],
-                            hoverBackgroundColor: [
-                                "rgba(78, 115, 223, 1)",
-                                "rgba(28, 200, 138, 1)",
-                                "rgba(246, 194, 62, 1)"
-                            ],
-                            borderWidth: 2
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false, // Allows proper resizing
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                display: true,
-                                position: "bottom"
+                        let pieCtx = document.getElementById("pie-chart").getContext("2d");
+
+                        let pieChart = new Chart(pieCtx, {
+                            type: "pie",
+                            data: {
+                                labels: ["Total Donations", "Total Adoptions", "Total Fundraising"],
+                                datasets: [{
+                                    data: [data.totalDonations, data.totalAdoptions, data.totalFundraising],
+                                    backgroundColor: [
+                                        "rgba(78, 115, 223, 0.7)", // Blue
+                                        "rgba(28, 200, 138, 0.7)", // Green
+                                        "rgba(246, 194, 62, 0.7)" // Yellow
+                                    ],
+                                    hoverBackgroundColor: [
+                                        "rgba(78, 115, 223, 1)",
+                                        "rgba(28, 200, 138, 1)",
+                                        "rgba(246, 194, 62, 1)"
+                                    ],
+                                    borderWidth: 2
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        display: true,
+                                        position: "bottom"
+                                    }
+                                }
                             }
-                        }
-                    }
-                });
+                        });
+                    })
+                    .catch(error => console.error("Error fetching dashboard data:", error));
             });
         </script>
 

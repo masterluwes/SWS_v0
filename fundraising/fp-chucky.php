@@ -36,8 +36,8 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="media2/logo1.png">
-    <title> SWS - Fundraising for Chucky! </title>
+    <link rel="icon" type="image/x-icon" href="../media2/logo1.png">
+    <title> SWS: Fundraising for Chucky! </title>
     <link rel="stylesheet" href="fundraisingpage-styles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
 </head>
@@ -52,7 +52,9 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
         </div>
         <div class="header-container">
             <div class="logo">
-                <img src="../media2/logo1.png" alt="Strays Worth Saving Logo">
+                <a href="../homepage.php">
+                    <img src="../media2/logo1.png" alt="Strays Worth Saving Logo">
+                </a>
             </div>
             <nav>
                 <ul class="navbar">
@@ -187,19 +189,19 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                 <div class="campaign-section">
                     <h2 class="campaign-title">More Fundraising Campaigns</h2>
                     <div class="campaign-list">
-                        <a href="fp-ghost.html" style="text-decoration: none;">
+                        <a href="fp-ghost.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-ghost6.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">HELP GHOST!</h3>
                             </div>
                         </a>
-                        <a href="fp-granny.html" style="text-decoration: none;">
+                        <a href="fp-granny.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-img1.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">5PHP FUND DRIVE FOR GRANNY!</h3>
                             </div>
                         </a>
-                        <a href="fp-general.html" style="text-decoration: none;">
+                        <a href="fp-general.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-general2.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">FUNDRAISING FOR GENERAL</h3>
@@ -369,29 +371,28 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    function fetchUpdatedDonations() {
-        fetch('../fundraising/fetch_fundraising_data.php?fundraising_name=FUNDRAISING%20FOR%20CHUCKY!&nocache=' + new Date().getTime(), {
-                cache: "no-store"
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Fetched Data:", data);
-                if (data.totalRaised !== undefined) {
-                    document.querySelector(".donation-asof").textContent = `₱ ${parseFloat(data.totalRaised).toLocaleString()}`;
-                    document.querySelector(".donor-count").textContent = `${data.donorCount} donors`;
-                    document.querySelector(".progress").style.width = `${data.progressPercentage}%`;
-                } else {
-                    console.error("Invalid data format", data);
-                }
-            })
-            .catch(error => console.error("Error fetching donation data:", error));
-    }
+    document.addEventListener("DOMContentLoaded", function() {
+        function fetchUpdatedDonations() {
+            fetch('../fundraising/fetch_fundraising_data.php?fundraising_name=FUNDRAISING%20FOR%20CHUCKY!&nocache=' + new Date().getTime(), {
+                    cache: "no-store"
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Fetched Data:", data);
+                    if (data.totalRaised !== undefined) {
+                        document.querySelector(".donation-asof").textContent = `₱ ${parseFloat(data.totalRaised).toLocaleString()}`;
+                        document.querySelector(".donor-count").textContent = `${data.donorCount} donors`;
+                        document.querySelector(".progress").style.width = `${data.progressPercentage}%`;
+                    } else {
+                        console.error("Invalid data format", data);
+                    }
+                })
+                .catch(error => console.error("Error fetching donation data:", error));
+        }
 
-    fetchUpdatedDonations();
-    setInterval(fetchUpdatedDonations, 2000);
-});
-
+        fetchUpdatedDonations();
+        setInterval(fetchUpdatedDonations, 2000);
+    });
 </script>
 
 </html>

@@ -36,8 +36,8 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="media2/logo1.png">
-    <title> SWS - Fundraising for Jade </title>
+    <link rel="icon" type="image/x-icon" href="../media2/logo1.png">
+    <title> SWS: Fundraising for Jade </title>
     <link rel="stylesheet" href="fundraisingpage-styles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
 </head>
@@ -52,7 +52,9 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
         </div>
         <div class="header-container">
             <div class="logo">
-                <img src="../media2/logo1.png" alt="Strays Worth Saving Logo">
+                <a href="../homepage.php">
+                    <img src="../media2/logo1.png" alt="Strays Worth Saving Logo">
+                </a>
             </div>
             <nav>
                 <ul class="navbar">
@@ -180,19 +182,19 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                 <div class="campaign-section">
                     <h2 class="campaign-title">More Fundraising Campaigns</h2>
                     <div class="campaign-list">
-                        <a href="fp-holly.html" style="text-decoration: none;">
+                        <a href="fp-holly.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-holly1.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">JUSTICE FOR HOLLY</h3>
                             </div>
                         </a>
-                        <a href="fp-ross.html" style="text-decoration: none;">
+                        <a href="fp-ross.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-ross1.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">HELP ROSS!</h3>
                             </div>
                         </a>
-                        <a href="fp-chucky.html" style="text-decoration: none;">
+                        <a href="fp-chucky.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-chucky2.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">FUNDRAISING FOR CHUCKY!</h3>

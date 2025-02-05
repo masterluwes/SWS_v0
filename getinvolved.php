@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strays Worth Saving</title>
+    <link rel="icon" type="image/x-icon" href="logo1.png">
+    <title>Get Involved • Strays Worth Saving</title>
     <link rel="stylesheet" href="swsstyles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -21,7 +22,9 @@
         </div>
         <div class="header-container">
             <div class="logo">
-                <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                <a href="homepage.php">
+                    <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                </a>
             </div>
             <nav>
                 <ul class="navbar">

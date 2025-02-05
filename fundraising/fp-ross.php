@@ -36,8 +36,8 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="media2/logo1.png">
-    <title> SWS - Help Ross! </title>
+    <link rel="icon" type="image/x-icon" href="../media2/logo1.png">
+    <title> SWS: Help Ross! </title>
     <link rel="stylesheet" href="fundraisingpage-styles.css">
     <script src="https://kit.fontawesome.com/799ba5711e.js" crossorigin="anonymous"></script>
 </head>
@@ -52,7 +52,9 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
         </div>
         <div class="header-container">
             <div class="logo">
-                <img src="../media2/logo1.png" alt="Strays Worth Saving Logo">
+                <a href="../homepage.php">
+                    <img src="../media2/logo1.png" alt="Strays Worth Saving Logo">
+                </a>
             </div>
             <nav>
                 <ul class="navbar">
@@ -203,19 +205,19 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                 <div class="campaign-section">
                     <h2 class="campaign-title">More Fundraising Campaigns</h2>
                     <div class="campaign-list">
-                        <a href="fp-chucky.html" style="text-decoration: none;">
+                        <a href="fp-chucky.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-chucky2.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">FUNDRAISING FOR CHUCKY!</h3>
                             </div>
                         </a>
-                        <a href="fp-ghost.html" style="text-decoration: none;">
+                        <a href="fp-ghost.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-ghost6.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">HELP GHOST!</h3>
                             </div>
                         </a>
-                        <a href="fp-granny.html" style="text-decoration: none;">
+                        <a href="fp-granny.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-img1.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">5PHP FUND DRIVE FOR GRANNY!</h3>
@@ -384,12 +386,12 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
 </script>
 
 <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            function fetchUpdatedDonations() {
-                let fundraisingName = document.querySelector(".fundraising-title").textContent.trim();
-                let encodedName = encodeURIComponent(fundraisingName);
+    document.addEventListener("DOMContentLoaded", function() {
+        function fetchUpdatedDonations() {
+            let fundraisingName = document.querySelector(".fundraising-title").textContent.trim();
+            let encodedName = encodeURIComponent(fundraisingName);
 
-                fetch(`../fundraising/fetch_fundraising_data.php?fundraising_name=${encodedName}&nocache=` + new Date().getTime(), {
+            fetch(`../fundraising/fetch_fundraising_data.php?fundraising_name=${encodedName}&nocache=` + new Date().getTime(), {
                     cache: "no-store"
                 })
                 .then(response => response.json())
@@ -404,11 +406,11 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                     }
                 })
                 .catch(error => console.error("Error fetching donation data:", error));
-            }
+        }
 
-            fetchUpdatedDonations();
-            setInterval(fetchUpdatedDonations, 5000);
-        });
-    </script>
+        fetchUpdatedDonations();
+        setInterval(fetchUpdatedDonations, 5000);
+    });
+</script>
 
 </html>
