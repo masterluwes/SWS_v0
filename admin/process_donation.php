@@ -11,14 +11,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $amount = floatval($_POST['amount']);
     $bank = $conn->real_escape_string($_POST['bank']);
 
+    // ✅ SERVER-SIDE VALIDATION FOR AMOUNT
+    if ($amount <= 0) {
+        $response["message"] = "Error: Donation amount must be greater than 0.";
+        echo json_encode($response);
+        exit();
+    }
+
     // Handle File Upload
-    $target_dir = "uploads/"; // Folder where files will be stored
+    $target_dir = "uploads/";
     if (!is_dir($target_dir)) {
-        mkdir($target_dir, 0777, true); // Create folder if it doesn't exist
+        mkdir($target_dir, 0777, true);
     }
 
     $file_name = basename($_FILES["proof-of-payment"]["name"]);
-    $target_file = $target_dir . time() . "_" . $file_name; // Prevent duplicate filenames
+    $target_file = $target_dir . time() . "_" . $file_name;
     $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $allowed_types = array("jpg", "jpeg", "png", "pdf");
 
@@ -30,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (move_uploaded_file($_FILES["proof-of-payment"]["tmp_name"], $target_file)) {
         $stmt = $conn->prepare("INSERT INTO donations (first_name, last_name, email, phone, amount, bank, proof_of_payment) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        
+
         if (!$stmt) {
             $response["message"] = "Database Error: " . $conn->error;
             echo json_encode($response);
@@ -56,4 +63,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 echo json_encode($response);
+
 ?>

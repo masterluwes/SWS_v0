@@ -744,7 +744,29 @@
     });
 </script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("one-time-form");
+    const amountInput = document.getElementById("amount");
 
+    form.addEventListener("submit", function(event) {
+        let amount = parseFloat(amountInput.value);
+
+        if (isNaN(amount) || amount <= 0) {
+            alert("Please enter a valid donation amount greater than 0.");
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+
+    // Ensure user cannot enter negative values manually
+    amountInput.addEventListener("input", function() {
+        if (this.value < 0) {
+            this.value = "";
+        }
+    });
+});
+
+</script>
 
 
 
