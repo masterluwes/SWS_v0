@@ -188,8 +188,50 @@ $conn->close();
         </section>
     </div>
     <footer class="footer">
-        <!-- Footer Content -->
+    <div class="footer-container">
+            <p>Contact Us</p>
+            <div class="socials">
+                <a href="https://www.facebook.com/straysworthsaving" target="_blank">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://x.com/SWSFoundationPH" target="_blank">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/straysworthsaving/" target="_blank">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://shopee.ph/straysworthsaving" target="_blank">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
+            <div class="copyright">
+                &copy; 2024 Strays Worth Saving. All rights reserved.
+            </div>
+            <div class="policies">
+                <a href="privacypolicy.html">Privacy Policy</a>
+                <a href="termsofuse.html">Terms of Use</a>
+            </div>
+        </div>
     </footer>
+    <button id="back-to-top" title="Go to top">↑</button>
+    <script>
+        const backToTopButton = document.getElementById("back-to-top");
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+
+        backToTopButton.onclick = function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        };
+    </script>
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", () => {

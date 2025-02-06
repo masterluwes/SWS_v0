@@ -525,8 +525,8 @@
                 &copy; 2024 Strays Worth Saving. All rights reserved.
             </div>
             <div class="policies">
-                <a href="">Privacy Policy</a>
-                <a href="">Terms of Use</a>
+                <a href="privacypolicy.html">Privacy Policy</a>
+                <a href="termsofuse.html">Terms of Use</a>
             </div>
         </div>
     </footer>
