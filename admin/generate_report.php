@@ -1,8 +1,8 @@
 <?php
 // Prevent unwanted output before PDF headers
-ob_start(); 
+ob_start();
 
-require_once __DIR__ . '/../vendor/tecnickcom/tcpdf/tcpdf.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Create a new PDF document
 $pdf = new TCPDF();
@@ -29,6 +29,7 @@ date_default_timezone_set('Asia/Manila');
 
 // Get the current date and time in Philippine timezone
 $reportDate = date('F d, Y h:i A'); // Example: "February 04, 2025 10:30 AM"
+$todayDate = date('Y-m-d'); // Format for database comparison (YYYY-MM-DD)
 
 // Fetch data (Make sure your database connection is correct)
 include '../admin/db.php';
@@ -50,11 +51,23 @@ $total_donations_result = $conn->query($total_donations_query);
 $total_donations_data = $total_donations_result->fetch_assoc();
 $total_donations = $total_donations_data['total_donations'];
 
+// Fetch today's donations (using `submission_date` for donations)
+$today_donations_query = "SELECT IFNULL(SUM(amount), 0) AS today_donations FROM donations WHERE DATE(submission_date) = '$todayDate'";
+$today_donations_result = $conn->query($today_donations_query);
+$today_donations_data = $today_donations_result->fetch_assoc();
+$today_donations = $today_donations_data['today_donations'];
+
 // Fetch total fundraising amount
 $total_fundraising_query = "SELECT IFNULL(SUM(amount), 0) AS total_fundraised FROM fundraising_donations";
 $total_fundraising_result = $conn->query($total_fundraising_query);
 $total_fundraising_data = $total_fundraising_result->fetch_assoc();
 $total_fundraised = $total_fundraising_data['total_fundraised'];
+
+// Fetch today's fundraised amount (using `created_at` for fundraising_donations)
+$today_fundraising_query = "SELECT IFNULL(SUM(amount), 0) AS today_fundraised FROM fundraising_donations WHERE DATE(created_at) = '$todayDate'";
+$today_fundraising_result = $conn->query($today_fundraising_query);
+$today_fundraising_data = $today_fundraising_result->fetch_assoc();
+$today_fundraised = $today_fundraising_data['today_fundraised'];
 
 // Close database connection
 $conn->close();
@@ -82,8 +95,16 @@ $html = '
         <td>' . number_format($total_donations, 2) . '</td>
     </tr>
     <tr>
+        <td>Donations Today (₱)</td>
+        <td>' . number_format($today_donations, 2) . '</td>
+    </tr>
+    <tr>
         <td>Total Fundraised (₱)</td>
         <td>' . number_format($total_fundraised, 2) . '</td>
+    </tr>
+    <tr>
+        <td>Fundraised Today (₱)</td>
+        <td>' . number_format($today_fundraised, 2) . '</td>
     </tr>
 </table>
 ';
@@ -95,4 +116,3 @@ $pdf->writeHTML($html, true, false, true, false, '');
 $pdf->Output('Dashboard_Report_' . date('Ymd_His') . '.pdf', 'D'); // 'D' forces download
 
 ob_end_flush(); // Prevents TCPDF output issues
-?>
