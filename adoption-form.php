@@ -53,7 +53,9 @@ if (!isset($_SESSION['form_errors'])) {
         <div class="header-container">
             <div class="logo">
                 <a href="homepage.php">
-                    <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                    <a href="homepage.php">
+                        <img src="media2/logo1.png" alt="Strays Worth Saving Logo">
+                    </a>
                 </a>
             </div>
             <nav>
