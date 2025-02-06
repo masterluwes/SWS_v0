@@ -194,12 +194,12 @@ $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                                 <h3 class="campaign-name">HELP ROSS!</h3>
                             </div>
                         </a>
-                        <a href="fp-chucky.php" style="text-decoration: none;">
+                        <!-- <a href="fp-chucky.php" style="text-decoration: none;">
                             <div class="campaign-card">
                                 <img src="../media/fp-chucky2.jpg" class="campaign-image" />
                                 <h3 class="campaign-name">FUNDRAISING FOR CHUCKY!</h3>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>

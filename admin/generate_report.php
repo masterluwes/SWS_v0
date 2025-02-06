@@ -24,7 +24,10 @@ $pdf->AddPage();
 // Set font
 $pdf->SetFont('helvetica', '', 12);
 
-// Get the current date and time
+// Set the timezone to the Philippines
+date_default_timezone_set('Asia/Manila');
+
+// Get the current date and time in Philippine timezone
 $reportDate = date('F d, Y h:i A'); // Example: "February 04, 2025 10:30 AM"
 
 // Fetch data (Make sure your database connection is correct)
